@@ -175,4 +175,5 @@ public class Queue : MonoBehaviour
     {
         return spawnedCharacters[0];
     }
+
 }

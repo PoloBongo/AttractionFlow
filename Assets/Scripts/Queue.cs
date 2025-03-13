@@ -165,4 +165,14 @@ public class Queue : MonoBehaviour
     {
         return CharacterOutsideQueue > 0;
     }
+
+    public bool IsEmpty()
+    {
+        return spawnedCharacters.Count == 0;
+    }
+
+    public Character GetFirstCharacterInQueue()
+    {
+        return spawnedCharacters[0];
+    }
 }

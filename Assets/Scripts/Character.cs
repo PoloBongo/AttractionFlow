@@ -34,7 +34,7 @@ public class Character : MonoBehaviour
     void Start()
     {
         //DEV
-        StartCoroutine(Delete(7f));
+        //StartCoroutine(Delete(7f));
     }
 
     private void FixedUpdate()

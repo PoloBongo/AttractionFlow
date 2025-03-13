@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OpenAttraction : MonoBehaviour
 {
+    [SerializeField]
     private bool isOpen = false;
     void Open()
     {
@@ -25,5 +26,10 @@ public class OpenAttraction : MonoBehaviour
     void PlayCloseAnimation()
     {
 
+    }
+
+    public bool GetIsOpen()
+    {
+        return isOpen;
     }
 }

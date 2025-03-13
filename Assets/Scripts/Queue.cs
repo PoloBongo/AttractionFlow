@@ -151,7 +151,6 @@ public class Queue : MonoBehaviour
         {
             Character character = spawnedCharacters[i];
             int currentWaypoint = character.GetWaypointID() -1;
-            Debug.Log(currentWaypoint);
             character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
         }
     }

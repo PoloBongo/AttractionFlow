@@ -22,11 +22,13 @@ public class MoneyManager : MonoBehaviour
     public void AddMoney(int amount)
     {
         money += amount;
+        Debug.Log($"+{amount} | Money: {money}");
     }
     
     public void SubtractMoney(int amount)
     {
         money -= amount;
+        Debug.Log($"-{amount} | Money: {money}");
     }
     
     public int GetMoney()

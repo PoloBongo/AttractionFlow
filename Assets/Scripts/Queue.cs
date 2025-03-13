@@ -30,11 +30,16 @@ public class Queue : MonoBehaviour
     [SerializeField]
     private bool shouldSpawnCharacter = false;
 
-    private List<Character> spawnedCharacters = new List<Character>();      //Personnages actuellement dans la file
+    [SerializeField]
+    List<Character> spawnedCharacters = new List<Character>();      //Personnages actuellement dans la file
 
     void Start()
     {
-
+        if (characterPrefabs == null || characterPrefabs.Length == 0)
+        {
+            Debug.LogError("Aucun prefab assigné dans characterPrefabs ! Désactivation du spawn.");
+            shouldSpawnCharacter = false;
+        }
     }
 
     private void Update()
@@ -58,13 +63,14 @@ public class Queue : MonoBehaviour
             {
                 timer = 0;
 
-                CharacterSpawned++;
-
                 //Arreter de spawn si on atteint la limite
                 if (CharacterSpawned >= MaxCharacterSpawned)
                 {
                     shouldSpawnCharacter = false;
+                    Debug.Log("Fin du spawn : tous les personnages ont été générés.");
+                    return;
                 }
+                CharacterSpawned++;
 
                 //Si il y a de la place sur l'écran on spawn le personnage, sinon on le stock ailleurs
                 if (spawnedCharacters.Count < CharacterLimit)
@@ -79,14 +85,8 @@ public class Queue : MonoBehaviour
         }
     }
 
-    void SpawnCharacter(bool favouriteAttraction = false)
+    private void SpawnCharacter(bool favouriteAttraction = false)
     {
-        if (characterPrefabs == null || characterPrefabs.Length == 0)
-        {
-            Debug.LogWarning("Aucun prefab assigné dans characterPrefabs !");
-            return;
-        }
-
         if (spawnPoint == null)
         {
             Debug.LogWarning("SpawnPoint non assigné !");
@@ -102,7 +102,10 @@ public class Queue : MonoBehaviour
 
             if (characterScript != null)
             {
+                //Choisir le waypoint initial
                 spawnedCharacters.Add(characterScript);
+                int waypointID = spawnedCharacters.Count - 1;
+                characterScript.SetWaypoint(Waypoints[waypointID], waypointID);
 
                 //Choisir une attraction favorite au hasard
                 if (favouriteAttraction)
@@ -118,6 +121,38 @@ public class Queue : MonoBehaviour
         else
         {
             Debug.LogWarning("Le prefab sélectionné est null !");
+        }
+    }
+
+    public Character RemoveCharacterFromQueue(Character character = null)
+    {
+        if (spawnedCharacters.Count == 0)
+        {
+            Debug.LogWarning("Aucun personnage à retirer de la file !");
+            return null;
+        }
+
+        // Si aucun personnage spécifié, on enlève le premier
+        Character characterToRemove = character ?? spawnedCharacters[0];
+        spawnedCharacters.Remove(characterToRemove);
+
+        // Déplacer les personnages restants
+        int startPoint = characterToRemove.GetWaypointID();
+        MoveAllCharactersForward(startPoint);
+
+        return characterToRemove;
+    }
+
+    private void MoveAllCharactersForward(int startPoint)
+    {
+
+        //Tous les persos à partir de ce point avance au prochain waypoint
+        for (int i = startPoint; i < spawnedCharacters.Count; i++)
+        {
+            Character character = spawnedCharacters[i];
+            int currentWaypoint = character.GetWaypointID() -1;
+            Debug.Log(currentWaypoint);
+            character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
         }
     }
 

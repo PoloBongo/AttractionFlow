@@ -5,16 +5,38 @@ using UnityEngine;
 public class OpenAttraction : MonoBehaviour
 {
     private bool isOpen = false;
+    [Header("Animation")] [SerializeField] private Animator fenceAnimator;
+    private static readonly int IsOpen = Animator.StringToHash("IsOpen");
+
     void Open()
     {
-        isOpen = true;
+        fenceAnimator.SetBool(IsOpen, isOpen);
         PlayOpenAnimation();
+        
+        Debug.Log("Open Attraction");
     }
 
     void Close()
     {
-        isOpen = false;
+        fenceAnimator.SetBool(IsOpen, isOpen);
         PlayCloseAnimation();
+        
+        Debug.Log("Close Attraction");
+    }
+
+    public void InteractAttraction()
+    {
+        isOpen = !isOpen;
+        
+        if (isOpen)
+        {
+            Open();
+        }
+        else
+        {
+            Close();
+        }
+        
     }
 
     void PlayOpenAnimation()

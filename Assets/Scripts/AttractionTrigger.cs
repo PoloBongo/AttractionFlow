@@ -3,10 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+enum Attraction
+{
+    Attraction1 = 10,
+    Attraction2 = 20,
+    Attraction3 = 30
+}
+
 enum Type
 {
-    ENTER,
-    LEAVE,
+    Enter,
+    Leave,
 }
 
 public class AttractionTrigger : MonoBehaviour
@@ -14,6 +21,8 @@ public class AttractionTrigger : MonoBehaviour
     [SerializeField] private BoxCollider boxCollider;
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private Type type;
+    [SerializeField] private Attraction attraction;
+    
 
     private void Awake()
     {
@@ -42,13 +51,13 @@ public class AttractionTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Character") && moneyManager)
         {
-            if (type == Type.ENTER)
+            if (type == Type.Enter)
             {
-                moneyManager.AddMoney(10);
+                moneyManager.AddMoney((int)attraction);
             }
-            else if (type == Type.LEAVE)
+            else if (type == Type.Leave)
             {
-                moneyManager.SubtractMoney(10);
+                moneyManager.SubtractMoney((int)attraction);
             }
             
         }

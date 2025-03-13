@@ -19,7 +19,7 @@ public class OpenAttraction : MonoBehaviour
 
     void PlayOpenAnimation()
     {
-
+        
     }
 
     void PlayCloseAnimation()

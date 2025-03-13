@@ -805,10 +805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Waypoints:
-  - {fileID: 475365196}
-  - {fileID: 1040194558}
-  - {fileID: 114790290}
   - {fileID: 1540349114}
+  - {fileID: 114790290}
+  - {fileID: 1040194558}
+  - {fileID: 475365196}
   CharacterLimit: 5
   characterPrefabs:
   - {fileID: 1166220404792374387, guid: 7b9675cf4e74c2d43b4db20db17b42cb, type: 3}
@@ -816,6 +816,7 @@ MonoBehaviour:
   MaxCharacterSpawned: 10
   cooldown: 2
   shouldSpawnCharacter: 0
+  spawnedCharacters: []
 --- !u!4 &2093772808
 Transform:
   m_ObjectHideFlags: 0

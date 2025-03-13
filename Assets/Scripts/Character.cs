@@ -16,7 +16,7 @@ enum FavouriteAttraction
     ATTRACTION3
 }
 
-public class Characters : MonoBehaviour
+public class Character : MonoBehaviour
 {
     private Emotion currentEmotion = Emotion.NEUTRAL;
     private FavouriteAttraction favouriteAttraction = FavouriteAttraction.NEUTRAL;

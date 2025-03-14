@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-enum Emotion
-{
-    NEUTRAL,
-    IMPATIENT,
-}
-
 enum FavouriteAttraction
 {
     NEUTRAL,
@@ -28,7 +22,6 @@ public class Character : MonoBehaviour
     private Transform[] waypoints;
 
     [SerializeField]
-    private Emotion currentEmotion = Emotion.NEUTRAL;
     private FavouriteAttraction favouriteAttraction = FavouriteAttraction.NEUTRAL;
 
 

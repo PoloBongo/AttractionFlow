@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2730100853440262972}
   - component: {fileID: 6866338959117294755}
   - component: {fileID: -4570419459508320050}
+  - component: {fileID: 6496060264891090126}
   m_Layer: 0
   m_Name: Basic_Blue_Character
   m_TagString: Character
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  currentEmotion: 0
+  favouriteAttraction: 0
 --- !u!136 &6866338959117294755
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -100,6 +101,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6496060264891090126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1166220404792374387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8020f9f09904294686b8b3df6a8b37c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEmotion: 0
+  timeUntilNeutral: 15
+  timeUntilAngry: 30
 --- !u!1 &1911724607436404201
 GameObject:
   m_ObjectHideFlags: 0

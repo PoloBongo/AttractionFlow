@@ -1225,13 +1225,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0.4304593, y: -0.56098557, z: 0.4304593, w: 0.56098557}
   m_LocalPosition: {x: -3.68, y: 3.76, z: 12.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052739192}
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: -90, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5762,6 +5762,76 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsX.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsX.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsZ.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsZ.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: velocityLerp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsX.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsX.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsY.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsY.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsZ.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsZ.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: velocityDecreaseLerp
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

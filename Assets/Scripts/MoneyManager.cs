@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using TMPro;
 using UnityEngine;
 
 public class MoneyManager : MonoBehaviour
@@ -7,28 +7,34 @@ public class MoneyManager : MonoBehaviour
     [Header("Money")]
     [SerializeField] private int money = 0;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static MoneyManager InstanceMoneyManager;
+    [SerializeField] private TMP_Text moneyText;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
+        Time.timeScale = 1f;
         
+        if (InstanceMoneyManager != null && InstanceMoneyManager != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            InstanceMoneyManager = this;
+            DontDestroyOnLoad(InstanceMoneyManager);
+        }
     }
     
     public void AddMoney(int amount)
     {
         money += amount;
-        Debug.Log($"+{amount} | Money: {money}");
+        moneyText.text = money.ToString();
     }
     
     public void SubtractMoney(int amount)
     {
         money -= amount;
-        Debug.Log($"-{amount} | Money: {money}");
+        moneyText.text = money.ToString();
     }
     
     public int GetMoney()

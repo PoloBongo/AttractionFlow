@@ -19,12 +19,13 @@ enum FavouriteAttraction
 
 public class Character : MonoBehaviour
 {
-    [Header ("Movement")]
+    [Header("Movement")]
     [SerializeField]
     private float speed = 5f;
     private Transform currentWaypoint;
     private int currentWaypointID;
     private bool isMoving = false;
+    private Transform[] waypoints;
 
     [SerializeField]
     private Emotion currentEmotion = Emotion.NEUTRAL;
@@ -54,7 +55,19 @@ public class Character : MonoBehaviour
         if (Vector3.Distance(currentWaypoint.position, transform.position) < 0.2f)
         {
             transform.position = currentWaypoint.position;
-            isMoving = false;
+
+            if (waypoints != null)
+            {
+                //Si on est pas passé par tempWaypoint
+                if (currentWaypoint.transform.position == waypoints[currentWaypointID].transform.position)
+                {
+                    isMoving = false;
+                }
+                else
+                {
+                    currentWaypoint = waypoints[currentWaypointID];
+                }
+            }
         }
     }
 
@@ -73,6 +86,11 @@ public class Character : MonoBehaviour
     public int GetWaypointID()
     {
         return currentWaypointID;
+    }
+
+    public void SetWaypoints(Transform[] newWaypoints)
+    {
+        waypoints = newWaypoints;
     }
 
     //DEV

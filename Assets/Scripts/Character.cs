@@ -107,7 +107,7 @@ public class Character : MonoBehaviour
         currentWaypointID = 0;
         isMoving = false;
         speed = baseSpeed;
-        GetComponent<CharacterEmoji>().Reset();
+        GetComponentInChildren<CharacterEmoji>().Reset();
     }
 
     public void AddToPulling()

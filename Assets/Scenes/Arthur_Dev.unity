@@ -1031,13 +1031,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.68, y: 15.29, z: 13.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1052739192}
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4687,6 +4687,10 @@ MonoBehaviour:
   animator: {fileID: 1998494796}
   pressActions: {fileID: -1809013390663993500, guid: ed49a96a8c7f9ac4385c8764d2c2dc15,
     type: 3}
+  holdActions: {fileID: 5895227549578412839, guid: ed49a96a8c7f9ac4385c8764d2c2dc15,
+    type: 3}
+  deltaActions: {fileID: 3389061143695988282, guid: ed49a96a8c7f9ac4385c8764d2c2dc15,
+    type: 3}
   selectedAttraction: {fileID: 1116716892}
   selectedAttractionParent: {fileID: 0}
 --- !u!95 &1998494796
@@ -4760,11 +4764,43 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1eea5cb0-ab70-4dc3-aea0-5464da8c3e17
     m_ActionName: Touch/OnTouch
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1998494795}
+        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
+        m_MethodName: OnHold
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: baa16a90-b35e-45cb-bd70-9ecfd0fc6eae
+    m_ActionName: Hold/OnHold[/Simulated Touchscreen/press,/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1998494795}
+        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8e59923c-e902-4eb1-a825-99d8a18d4186
+    m_ActionName: Delta/OnMove[/Simulated Touchscreen/primaryTouch/delta,/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Separate
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 330585545}
 --- !u!1 &2032727464
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,7 +79,7 @@
                     "name": "OnTouch",
                     "type": "Value",
                     "id": "1eea5cb0-ab70-4dc3-aea0-5464da8c3e17",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -89,7 +89,7 @@
                 {
                     "name": "",
                     "id": "8b952f50-841a-4d32-a054-1b37cbae47b7",
-                    "path": "<Touchscreen>/primaryTouch/position",
+                    "path": "<Touchscreen>/primaryTouch/startPosition",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -105,6 +105,84 @@
                     "processors": "",
                     "groups": "",
                     "action": "OnTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Hold",
+            "id": "61db05f3-cc76-4751-a272-d401f52d6e6c",
+            "actions": [
+                {
+                    "name": "OnHold",
+                    "type": "Value",
+                    "id": "baa16a90-b35e-45cb-bd70-9ecfd0fc6eae",
+                    "expectedControlType": "Digital",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4f722b9a-4078-4a7b-959d-d465021a5d13",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "588dbb56-4621-4738-b750-711ce45d2956",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Delta",
+            "id": "d85c4af6-7569-4878-956b-0b2266aae67b",
+            "actions": [
+                {
+                    "name": "OnMove",
+                    "type": "Value",
+                    "id": "8e59923c-e902-4eb1-a825-99d8a18d4186",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d3aaa0c7-9624-432c-90bd-123e275f4037",
+                    "path": "<Touchscreen>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4517971-cb11-4b49-971a-579d77bc5cd1",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMove",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

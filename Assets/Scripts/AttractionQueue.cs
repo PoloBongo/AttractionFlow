@@ -4,51 +4,43 @@ using UnityEngine;
 
 public class AttractionQueue : ParentQueue
 {
-    [SerializeField]
-    private ParentQueue queue;
-
-    [SerializeField]
-    private OpenAttraction openAttraction;
+    [SerializeField] private ParentQueue queue;
+    [SerializeField] private OpenAttraction openAttraction;
 
     [Header("Gestion de la Queue")]
-    [SerializeField]
-    private Transform tempWaypoint;
+    [SerializeField] private Transform tempWaypoint;
+    [SerializeField] private Transform attractionWaypoint;
 
-    [SerializeField]
-    private Transform attractionWaypoint;
-
-    [SerializeField]
-    private float cooldown = 5f;        //Temps avant que quelqu'un aille dans la queue
+    [SerializeField] private float cooldown = 2f;
     private float timer = 0f;
 
-    [SerializeField]
-    private float attractionCooldown = 10f;         //Temps d'attente entre chaque personne
+    [SerializeField] private float attractionCooldown = 10f;
     private float attractionTimer = 0f;
 
-    [SerializeField]
-    private float targetRotationPlayer;
-    
-    private Quaternion RotationPlayer;
+    [SerializeField] private float targetRotationPlayer;
     private float rotationSpeed = 5f;
-    
+
     private void Update()
     {
         ManageAttraction();
-        if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty())
+
+        timer += Time.deltaTime;
+        if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty() && timer >= cooldown)
         {
-            timer += Time.deltaTime;
-            if (timer >= cooldown)
-            {
-                timer = 0;
-                TransferCharacterToAttraction();
-            }
+            timer = 0;
+            TransferCharacterToAttraction();
         }
-        
+
+        RotateCharacters();
+    }
+
+    private void RotateCharacters()
+    {
         foreach (Character character in spawnedCharacters)
         {
             character.transform.rotation = Quaternion.Lerp(
-                character.transform.rotation, 
-                Quaternion.Euler(0, targetRotationPlayer, 0), 
+                character.transform.rotation,
+                Quaternion.Euler(0, targetRotationPlayer, 0),
                 Time.deltaTime * rotationSpeed
             );
         }
@@ -58,30 +50,20 @@ public class AttractionQueue : ParentQueue
     {
         Character character = queue.GetFirstCharacterInQueue();
 
-        if (character != null)
+        if (character == null)
         {
-            // Ajouter le personnage � la queue de l'attraction
-            spawnedCharacters.Add(character);
-            queue.RemoveCharacterFromQueue(character);
-            int waypointID = spawnedCharacters.Count - 1;
-            character.SetWaypoint(tempWaypoint, waypointID);
-            character.SetWaypoints(Waypoints);
+            Debug.LogWarning("Aucun personnage à transférer.");
+            return;
+        }
 
-            // Assigner le CharacterMood � la nouvelle queue d'attraction
-            CharacterMood characterMood = character.GetComponent<CharacterMood>();
-            if (characterMood != null)
-            {
-                characterMood.SetQueue(this);
-            }
-            else
-            {
-                Debug.LogWarning("Le prefab ne contient pas de script CharacterMood !");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Aucun personnage � transf�rer.");
-        }
+        spawnedCharacters.Add(character);
+        queue.RemoveCharacterFromQueue(character);
+
+        int waypointID = spawnedCharacters.Count - 1;
+        character.SetWaypoint(tempWaypoint, waypointID);
+        character.SetWaypoints(waypoints);
+
+        AssignCharacterMood(character.gameObject);
     }
 
     private void ManageAttraction()
@@ -89,31 +71,21 @@ public class AttractionQueue : ParentQueue
         attractionTimer += Time.deltaTime;
         Character character = GetFirstCharacterInQueue();
 
-        if (!IsEmpty() && attractionTimer >= attractionCooldown && character.transform.position == Waypoints[0].transform.position)
+        if (!IsEmpty() && attractionTimer >= attractionCooldown && character.transform.position == waypoints[0].position)
         {
             attractionTimer = 0;
+            RemoveCharacterFromQueue(character);
+            character.SetWaypoint(attractionWaypoint, -1);
+            AssignCharacterMood(character.gameObject, null);
+        }
+    }
 
-            if (character != null)
-            {
-                // Ajouter le personnage � la queue de l'attraction
-                RemoveCharacterFromQueue(character);
-                character.SetWaypoint(attractionWaypoint, -1);
-
-                // Assigner le CharacterMood � la nouvelle queue d'attraction
-                CharacterMood characterMood = character.GetComponent<CharacterMood>();
-                if (characterMood != null)
-                {
-                    characterMood.SetQueue(null);
-                }
-                else
-                {
-                    Debug.LogWarning("Le prefab ne contient pas de script CharacterMood !");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("Aucun personnage � transf�rer.");
-            }
+    private void AssignCharacterMood(GameObject characterObject, ParentQueue queue = null)
+    {
+        CharacterMood characterMood = characterObject.GetComponent<CharacterMood>();
+        if (characterMood != null)
+        {
+            characterMood.SetQueue(queue);
         }
     }
 }

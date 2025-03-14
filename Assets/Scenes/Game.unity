@@ -1249,12 +1249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede65990137e7b1469ddb584c31a9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waypoints:
+  waypoints:
   - {fileID: 838937509}
   - {fileID: 620393023}
   - {fileID: 895039474}
   - {fileID: 684786545}
-  CharacterLimit: 4
+  characterLimit: 4
   spawnedCharacters: []
   queue: {fileID: 2093772807}
   openAttraction: {fileID: 1445468342}
@@ -1463,12 +1463,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede65990137e7b1469ddb584c31a9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waypoints:
+  waypoints:
   - {fileID: 1609954010}
   - {fileID: 481068112}
   - {fileID: 471412773}
   - {fileID: 31849906}
-  CharacterLimit: 4
+  characterLimit: 4
   spawnedCharacters: []
   queue: {fileID: 2093772807}
   openAttraction: {fileID: 1801789437}
@@ -1665,18 +1665,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083f8cd71012e4d45adb81e007b1391c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Waypoints:
+  waypoints:
   - {fileID: 1540349114}
   - {fileID: 114790290}
   - {fileID: 1040194558}
   - {fileID: 475365196}
-  CharacterLimit: 4
+  characterLimit: 4
   spawnedCharacters: []
-  CharacterOutsideQueue: 0
+  characterOutsideQueue: 0
   characterPrefabs:
   - {fileID: 1166220404792374387, guid: 7b9675cf4e74c2d43b4db20db17b42cb, type: 3}
   spawnPoint: {fileID: 341507235}
-  MaxCharacterSpawned: 10
+  maxCharacterSpawned: 10
   cooldown: 2
   shouldSpawnCharacter: 1
   pulling: {fileID: 618050260}

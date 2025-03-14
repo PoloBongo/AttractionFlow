@@ -17,6 +17,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
+    private float baseSpeed = 5f;
+    [SerializeField]
     private float runSpeed = 10f;
     private Transform currentWaypoint;
     private int currentWaypointID;
@@ -32,6 +34,7 @@ public class Character : MonoBehaviour
     {
         //DEV
         //StartCoroutine(Delete(7f));
+        speed = baseSpeed;
     }
 
     private void FixedUpdate()
@@ -95,6 +98,7 @@ public class Character : MonoBehaviour
         currentWaypointID = 0;
         isMoving = false;
         waypoints = null;
+        speed = baseSpeed;
     }
 
     public void AddToPulling()
@@ -114,6 +118,7 @@ public class Character : MonoBehaviour
     public void Leave()
     {
         SetWaypoint(leaveWaypoint, -1);
+        speed = runSpeed;
     }
 
     //DEV

@@ -21,25 +21,25 @@ public class CharacterMood : MonoBehaviour
     [SerializeField] private float timeUntilGone = 30f;
 
     [Header("Référence externe")]
-    [SerializeField] private SliderMood slider; // Assigné dans l'Inspector pour éviter FindObjectOfType
+    [SerializeField] private SliderMood slider; // Assigné dans l'Inspector
 
     private ParentQueue currentQueue;
     private Coroutine moodCoroutine;
 
-    private static readonly Dictionary<Emotion, float> EmotionSliderDecrease = new Dictionary<Emotion, float>
+    private static readonly Dictionary<Emotion, float> EmotionSliderImpact = new Dictionary<Emotion, float>
     {
-        { Emotion.HAPPY, 0.1f },
+        { Emotion.HAPPY,  0.1f },
         { Emotion.NEUTRAL, 0.0f },
-        { Emotion.ANGRY, -0.05f },
-        { Emotion.RAGE, -0.1f },
-        { Emotion.GONE, -0.2f }
+        { Emotion.ANGRY,  -0.05f },
+        { Emotion.RAGE,   -0.1f },
+        { Emotion.GONE,   -0.2f }
     };
 
     private void Start()
     {
         if (slider == null)
         {
-            Debug.LogWarning("SliderMood non assigné dans l'inspecteur !");
+            Debug.Log("SliderMood non assigné dans l'inspecteur !");
         }
 
         moodCoroutine = StartCoroutine(MoodChecker());
@@ -63,18 +63,16 @@ public class CharacterMood : MonoBehaviour
     {
         if (currentEmotion == newEmotion) return;
 
-        float initialEmotionValue = EmotionSliderDecrease[currentEmotion];
-        float newEmotionValue = EmotionSliderDecrease[newEmotion];
-
         currentEmotion = newEmotion;
+        Debug.Log($"{gameObject.name} est maintenant {currentEmotion}");
 
-        if (slider != null)
+        if (slider != null && EmotionSliderImpact.ContainsKey(newEmotion))
         {
-            slider.SetTargetValue(newEmotionValue - initialEmotionValue);
+            slider.SetTargetValue(EmotionSliderImpact[newEmotion]);
         }
         else
         {
-            Debug.LogWarning($"SliderMood non trouvé ou émotion {currentEmotion} non gérée.");
+            Debug.LogWarning($"SliderMood non trouvé ou émotion {newEmotion} non gérée.");
         }
     }
 
@@ -83,12 +81,19 @@ public class CharacterMood : MonoBehaviour
         if (currentQueue != null)
         {
             Character character = GetComponent<Character>();
-            currentQueue.RemoveCharacterFromQueue(character);
-            character.Leave();
+            if (character != null)
+            {
+                currentQueue.RemoveCharacterFromQueue(character);
+                character.Leave();
+            }
+            else
+            {
+                Debug.LogWarning("Impossible de retirer : Character est null.");
+            }
         }
         else
         {
-            Debug.LogWarning("Impossible de retirer le personnage : currentQueue est null.");
+            Debug.LogWarning("Impossible de retirer : currentQueue est null.");
         }
     }
 
@@ -97,14 +102,15 @@ public class CharacterMood : MonoBehaviour
         if (moodCoroutine != null)
         {
             StopCoroutine(moodCoroutine);
-            moodCoroutine = StartCoroutine(MoodChecker());
         }
+        moodCoroutine = StartCoroutine(MoodChecker());
     }
 
     public void BeHappy()
     {
         ResetTimer();
-        SetEmotion(currentEmotion - 1);
+        Emotion newEmotion = (Emotion)Mathf.Max((int)currentEmotion - 1, (int)Emotion.HAPPY);
+        SetEmotion(newEmotion);
     }
 
     public void SetQueue(ParentQueue queue)

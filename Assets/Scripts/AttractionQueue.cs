@@ -20,8 +20,17 @@ public class AttractionQueue : ParentQueue
     [SerializeField] private float targetRotationPlayer;
     private float rotationSpeed = 5f;
 
+    [SerializeField] private UICooldown ui;
+
+    private void Start()
+    {
+        timer = cooldown;
+        attractionTimer = attractionCooldown;
+    }
     private void Update()
     {
+        ui.UpdateSlider(attractionTimer, attractionCooldown);
+
         ManageAttraction();
 
         timer += Time.deltaTime;

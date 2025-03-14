@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEmotion: 0
-  timeUntilNeutral: 15
-  timeUntilAngry: 30
+  timeUntilNeutral: 2
+  timeUntilAngry: 5
+  timeUntilGone: 8
 --- !u!1 &1911724607436404201
 GameObject:
   m_ObjectHideFlags: 0

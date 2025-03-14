@@ -1,31 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttractionQueue : MonoBehaviour
+public class AttractionQueue : ParentQueue
 {
     [SerializeField]
-    private Queue queue;
+    private ParentQueue queue;
 
     [SerializeField]
     private OpenAttraction openAttraction;
 
-    [SerializeField]
-    [Header("Manage Queue")]
-    private Transform[] Waypoints;
+    [Header("Gestion de la Queue")]
     [SerializeField]
     private Transform tempWaypoint;
 
     [SerializeField]
-    private int CharacterLimit = 5;         //Nombre max de personnages visibles � l'�cran
-
-    [SerializeField]
     private float cooldown = 5f;
-    private float timer = 0f;
 
-    [SerializeField]
-    List<Character> spawnedCharacters = new List<Character>();      //Personnages actuellement dans la file
+    private float timer = 0f;
 
     [SerializeField]
     private float targetRotationPlayer;
@@ -35,7 +27,15 @@ public class AttractionQueue : MonoBehaviour
     
     private void Update()
     {
-        ManageSpawn();
+        if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty())
+        {
+            timer += Time.deltaTime;
+            if (timer >= cooldown)
+            {
+                timer = 0;
+                TransferCharacterToAttraction();
+            }
+        }
         
         foreach (Character character in spawnedCharacters)
         {
@@ -46,74 +46,34 @@ public class AttractionQueue : MonoBehaviour
             );
         }
     }
-    private void ManageSpawn()
-    {
-        //Si il y a un perso hors de la file, qu'elle n'est pas pleine et que la porte est ouverte, on le fait venir
-        if (!IsFull() && openAttraction.GetIsOpen() && !queue.IsEmpty())
-        {
-            timer += Time.deltaTime;
-            if (timer >= cooldown)
-            {
-                timer = 0;
 
-                GetCharacter();
-            }
-        }
-    }
-
-    private void GetCharacter()
+    private void TransferCharacterToAttraction()
     {
         Character character = queue.GetFirstCharacterInQueue();
 
         if (character != null)
         {
-            //Choisir le waypoint initial
+            // Ajouter le personnage � la queue de l'attraction
             spawnedCharacters.Add(character);
             queue.RemoveCharacterFromQueue(character);
             int waypointID = spawnedCharacters.Count - 1;
             character.SetWaypoint(tempWaypoint, waypointID);
             character.SetWaypoints(Waypoints);
+
+            // Assigner le CharacterMood � la nouvelle queue d'attraction
+            CharacterMood characterMood = character.GetComponent<CharacterMood>();
+            if (characterMood != null)
+            {
+                characterMood.SetQueue(this);
+            }
+            else
+            {
+                Debug.LogWarning("Le prefab ne contient pas de script CharacterMood !");
+            }
         }
         else
         {
-            Debug.LogWarning("Le prefab instanci� ne contient pas de script Characters !");
+            Debug.LogWarning("Aucun personnage � transf�rer.");
         }
-    }
-
-    public Character RemoveCharacterFromQueue(Character character = null)
-    {
-        if (spawnedCharacters.Count == 0)
-        {
-            Debug.LogWarning("Aucun personnage � retirer de la file !");
-            return null;
-        }
-
-        // Si aucun personnage sp�cifi�, on enl�ve le premier
-        Character characterToRemove = character ?? spawnedCharacters[0];
-        spawnedCharacters.Remove(characterToRemove);
-
-        // D�placer les personnages restants
-        int startPoint = characterToRemove.GetWaypointID();
-        MoveAllCharactersForward(startPoint);
-
-        return characterToRemove;
-    }
-
-    private void MoveAllCharactersForward(int startPoint)
-    {
-
-        //Tous les persos � partir de ce point avance au prochain waypoint
-        for (int i = startPoint; i < spawnedCharacters.Count; i++)
-        {
-            Character character = spawnedCharacters[i];
-            int currentWaypoint = character.GetWaypointID() - 1;
-            Debug.Log(currentWaypoint);
-            character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
-        }
-    }
-
-    private bool IsFull()
-    {
-        return spawnedCharacters.Count >= CharacterLimit;
     }
 }

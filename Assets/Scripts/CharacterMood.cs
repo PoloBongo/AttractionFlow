@@ -6,9 +6,10 @@ enum Emotion
     HAPPY,
     NEUTRAL,
     ANGRY,
+    GONE
 }
 
-public class Character1 : MonoBehaviour
+public class CharacterMood : MonoBehaviour
 {
     [SerializeField]
     private Emotion currentEmotion = Emotion.HAPPY;
@@ -16,7 +17,11 @@ public class Character1 : MonoBehaviour
     [SerializeField]
     private float timeUntilNeutral = 15f;
     [SerializeField]
-    private float timeUntilAngry = 30f;
+    private float timeUntilAngry = 25f;
+    [SerializeField]
+    private float timeUntilGone = 35f;
+
+    private ParentQueue currentQueue;
 
     private void Start()
     {
@@ -30,6 +35,15 @@ public class Character1 : MonoBehaviour
 
         yield return new WaitForSeconds(timeUntilAngry - timeUntilNeutral);
         SetEmotion(Emotion.ANGRY);
+
+        yield return new WaitForSeconds(timeUntilGone - timeUntilAngry);
+        SetEmotion(Emotion.GONE);
+        Leave();
+    }
+
+    void Leave()
+    {
+        currentQueue.RemoveCharacterFromQueue(GetComponent<Character>());
     }
 
     private void SetEmotion(Emotion newEmotion)
@@ -46,5 +60,10 @@ public class Character1 : MonoBehaviour
         StopAllCoroutines();
         currentEmotion = Emotion.HAPPY;
         StartCoroutine(MoodChecker());
+    }
+
+    public void SetQueue(ParentQueue queue)
+    {
+        currentQueue = queue;
     }
 }

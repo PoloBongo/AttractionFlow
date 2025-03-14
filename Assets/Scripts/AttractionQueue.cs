@@ -15,6 +15,8 @@ public class AttractionQueue : ParentQueue
     private float timer = 0f;
 
     [SerializeField] private float attractionCooldown = 10f;
+    [SerializeField] private float minCooldown = 5f;
+    [SerializeField] private float cooldownDiminishingRate = 0.1f;
     private float attractionTimer = 0f;
 
     [SerializeField] private float targetRotationPlayer;
@@ -41,6 +43,8 @@ public class AttractionQueue : ParentQueue
         }
 
         RotateCharacters();
+
+        UpdateCooldown();
     }
 
     private void RotateCharacters()
@@ -95,6 +99,14 @@ public class AttractionQueue : ParentQueue
         if (characterMood != null)
         {
             characterMood.SetQueue(queue);
+        }
+    }
+    private void UpdateCooldown()
+    {
+        attractionCooldown -= cooldownDiminishingRate * Time.deltaTime;
+        if (attractionCooldown <= minCooldown)
+        {
+            attractionCooldown = minCooldown;
         }
     }
 }

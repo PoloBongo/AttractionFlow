@@ -13,8 +13,11 @@ public class Queue : ParentQueue
     [SerializeField] private int maxCharacterSpawned = 10;
     private int characterSpawned = 0;
 
-    [SerializeField] private float cooldown = 5f;
+    [SerializeField] private float startCooldown = 5f;
+    [SerializeField] private float minCooldown = 0.5f;
+    [SerializeField] private float cooldownDiminishingRate = 0.2f;
     private float timer = 0f;
+    private float globalTimer = 0f;
 
     [SerializeField] private bool shouldSpawnCharacter = false;
     [SerializeField] private Pulling pulling;
@@ -45,6 +48,8 @@ public class Queue : ParentQueue
         {
             ManageCharacterSpawn();
         }
+
+        UpdateCooldown();
     }
 
     private void ManageCharacterSpawn()
@@ -59,7 +64,7 @@ public class Queue : ParentQueue
             return;
         }
 
-        if (timer >= cooldown)
+        if (timer >= startCooldown)
         {
             if (characterSpawned < maxCharacterSpawned && spawnedCharacters.Count < characterLimit)
             {
@@ -176,5 +181,15 @@ public class Queue : ParentQueue
             }
         }
         return false;
+    }
+
+    private void UpdateCooldown()
+    {
+        globalTimer += Time.deltaTime;
+        startCooldown -= cooldownDiminishingRate * Time.deltaTime;
+        if (startCooldown <= minCooldown)
+        {
+            startCooldown = minCooldown;
+        }
     }
 }

@@ -14,6 +14,8 @@ public class AttractionQueue : MonoBehaviour
     [SerializeField]
     [Header("Manage Queue")]
     private Transform[] Waypoints;
+    [SerializeField]
+    private Transform tempWaypoint;
 
     [SerializeField]
     private int CharacterLimit = 5;         //Nombre max de personnages visibles à l'écran
@@ -54,7 +56,8 @@ public class AttractionQueue : MonoBehaviour
             spawnedCharacters.Add(character);
             queue.RemoveCharacterFromQueue(character);
             int waypointID = spawnedCharacters.Count - 1;
-            character.SetWaypoint(Waypoints[waypointID], waypointID);
+            character.SetWaypoint(tempWaypoint, waypointID);
+            character.SetWaypoints(Waypoints);
         }
         else
         {

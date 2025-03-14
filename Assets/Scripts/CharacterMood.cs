@@ -22,6 +22,7 @@ public class CharacterMood : MonoBehaviour
 
     [Header("Référence externe")]
     [SerializeField] private SliderMood slider;
+    [SerializeField] private CharacterEmoji characterEmoji;
 
     private ParentQueue currentQueue;
     private Coroutine moodCoroutine;
@@ -65,6 +66,7 @@ public class CharacterMood : MonoBehaviour
         if (currentEmotion == newEmotion) return;
 
         currentEmotion = newEmotion;
+        characterEmoji.UpdateUI(newEmotion);
 
         if (slider != null && EmotionSliderImpact.ContainsKey(newEmotion))
         {

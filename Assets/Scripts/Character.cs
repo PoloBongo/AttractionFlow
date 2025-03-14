@@ -107,6 +107,7 @@ public class Character : MonoBehaviour
         currentWaypointID = 0;
         isMoving = false;
         speed = baseSpeed;
+        GetComponent<CharacterEmoji>().Reset();
     }
 
     public void AddToPulling()
@@ -133,6 +134,13 @@ public class Character : MonoBehaviour
     {
         return favouriteAttraction;
     }
+
+    public IEnumerator WaitAndDelete()
+    {
+        yield return new WaitForSeconds(1.0f);
+        AddToPulling();
+    }
+
     //DEV
     IEnumerator Delete(float timer)
     {

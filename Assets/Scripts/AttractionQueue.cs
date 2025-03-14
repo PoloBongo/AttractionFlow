@@ -14,6 +14,8 @@ public class AttractionQueue : MonoBehaviour
     [SerializeField]
     [Header("Manage Queue")]
     private Transform[] Waypoints;
+    [SerializeField]
+    private Transform tempWaypoint;
 
     [SerializeField]
     private int CharacterLimit = 5;         //Nombre max de personnages visibles à l'écran
@@ -43,7 +45,6 @@ public class AttractionQueue : MonoBehaviour
             }
         }
     }
-
     private void GetCharacter()
     {
         Character character = queue.GetFirstCharacterInQueue();
@@ -54,14 +55,15 @@ public class AttractionQueue : MonoBehaviour
             spawnedCharacters.Add(character);
             queue.RemoveCharacterFromQueue(character);
             int waypointID = spawnedCharacters.Count - 1;
-            character.SetWaypoint(Waypoints[waypointID], waypointID);
+
+            character.SetWaypoints(Waypoints);
+            character.SetWaypoint(tempWaypoint, waypointID);
         }
         else
         {
             Debug.LogWarning("Le prefab instancié ne contient pas de script Characters !");
         }
     }
-
     public Character RemoveCharacterFromQueue(Character character = null)
     {
         if (spawnedCharacters.Count == 0)

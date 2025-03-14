@@ -29,11 +29,11 @@ public class CharacterMood : MonoBehaviour
 
     private static readonly Dictionary<Emotion, float> EmotionSliderImpact = new Dictionary<Emotion, float>
     {
-        { Emotion.HAPPY,  0.1f },
+        { Emotion.HAPPY,  0.015f },
         { Emotion.NEUTRAL, 0.0f },
-        { Emotion.ANGRY,  -0.05f },
-        { Emotion.RAGE,   -0.1f },
-        { Emotion.GONE,   -0.2f }
+        { Emotion.ANGRY,  -0.025f },
+        { Emotion.RAGE,   -0.05f },
+        { Emotion.GONE,   -0.1f }
     };
 
     private void Start()

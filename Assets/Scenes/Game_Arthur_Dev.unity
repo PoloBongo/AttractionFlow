@@ -18345,6 +18345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4087730624127944337, guid: 5d63c4b80e1c481498d5c7b6701700e9,
         type: 3}
+      propertyPath: cooldownDiminishingRate
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4087730624127944337, guid: 5d63c4b80e1c481498d5c7b6701700e9,
+        type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 485627387}

@@ -1,18 +1,14 @@
-using System;
-using System.Collections;
-using UnityEditor.DeviceSimulation;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GestionTouch : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
-    private Camera camera;
-
+    private Camera _camera;
+    [SerializeField] private float speed = 1f;
+    
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
@@ -25,16 +21,16 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     public void Update()
     {
         foreach (var touch in Touch.activeTouches)
         {
-            if (touch.ended)
+            if (touch.isTap)
             {
-                Ray ray = camera.ScreenPointToRay(touch.screenPosition);
+                Ray ray = _camera.ScreenPointToRay(touch.screenPosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     Debug.Log("Objet touché : " + hit.collider.gameObject.name);
@@ -51,6 +47,12 @@ public class NewBehaviourScript : MonoBehaviour
                         Debug.Log("n'arrive pas a get le comp");
                     }
                 }
+            }
+            else if (touch.inProgress)
+            {
+                Vector2 delta = touch.delta;
+                _camera.transform.position += new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
+                _camera.transform.position = new Vector3(Mathf.Clamp(_camera.transform.position.x, -10, 10), _camera.transform.position.y, Mathf.Clamp(_camera.transform.position.z, -10, 10));
             }
         }
     }

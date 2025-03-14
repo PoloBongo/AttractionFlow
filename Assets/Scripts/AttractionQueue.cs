@@ -19,7 +19,13 @@ public class AttractionQueue : ParentQueue
 
     private float timer = 0f;
 
-    void Update()
+    [SerializeField]
+    private float targetRotationPlayer;
+    
+    private Quaternion RotationPlayer;
+    private float rotationSpeed = 5f;
+    
+    private void Update()
     {
         if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty())
         {
@@ -30,6 +36,15 @@ public class AttractionQueue : ParentQueue
                 TransferCharacterToAttraction();
             }
         }
+        
+        foreach (Character character in spawnedCharacters)
+        {
+            character.transform.rotation = Quaternion.Lerp(
+                character.transform.rotation, 
+                Quaternion.Euler(0, targetRotationPlayer, 0), 
+                Time.deltaTime * rotationSpeed
+            );
+        }
     }
 
     private void TransferCharacterToAttraction()
@@ -38,14 +53,14 @@ public class AttractionQueue : ParentQueue
 
         if (character != null)
         {
-            // Ajouter le personnage à la queue de l'attraction
+            // Ajouter le personnage ï¿½ la queue de l'attraction
             spawnedCharacters.Add(character);
             queue.RemoveCharacterFromQueue(character);
             int waypointID = spawnedCharacters.Count - 1;
             character.SetWaypoint(tempWaypoint, waypointID);
             character.SetWaypoints(Waypoints);
 
-            // Assigner le CharacterMood à la nouvelle queue d'attraction
+            // Assigner le CharacterMood ï¿½ la nouvelle queue d'attraction
             CharacterMood characterMood = character.GetComponent<CharacterMood>();
             if (characterMood != null)
             {
@@ -58,7 +73,7 @@ public class AttractionQueue : ParentQueue
         }
         else
         {
-            Debug.LogWarning("Aucun personnage à transférer.");
+            Debug.LogWarning("Aucun personnage ï¿½ transfï¿½rer.");
         }
     }
 }

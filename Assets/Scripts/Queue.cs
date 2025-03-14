@@ -16,9 +16,9 @@ public class Queue : ParentQueue
     private Transform spawnPoint;
 
     [SerializeField]
-    private int MaxCharacterSpawned = 10; // Nombre total de personnages à faire spawn
+    private int MaxCharacterSpawned = 10; // Nombre total de personnages ï¿½ faire spawn
 
-    private int CharacterSpawned = 0; // Nombre de personnages spawnés
+    private int CharacterSpawned = 0; // Nombre de personnages spawnï¿½s
 
     [SerializeField]
     private float cooldown = 5f; // Temps entre chaque spawn
@@ -32,7 +32,7 @@ public class Queue : ParentQueue
     {
         if (characterPrefabs == null || characterPrefabs.Length == 0)
         {
-            Debug.LogError("Aucun prefab de personnage assigné. Désactivation du spawn.");
+            Debug.LogError("Aucun prefab de personnage assignï¿½. Dï¿½sactivation du spawn.");
             shouldSpawnCharacter = false;
         }
     }
@@ -52,7 +52,7 @@ public class Queue : ParentQueue
 
     private void ManageCharacterSpawn()
     {
-        // Si la file n'est pas pleine et qu'un personnage attend à l'extérieur, on le fait spawn
+        // Si la file n'est pas pleine et qu'un personnage attend ï¿½ l'extï¿½rieur, on le fait spawn
         if (!IsFull() && IsACharacterWaitingOutside())
         {
             CharacterOutsideQueue--;
@@ -73,7 +73,7 @@ public class Queue : ParentQueue
             }
             else
             {
-                // Si la file est pleine, on incrémente le nombre de personnages en attente
+                // Si la file est pleine, on incrï¿½mente le nombre de personnages en attente
                 CharacterOutsideQueue++;
             }
         }
@@ -83,7 +83,7 @@ public class Queue : ParentQueue
     {
         if (spawnPoint == null)
         {
-            Debug.LogWarning("SpawnPoint non assigné !");
+            Debug.LogWarning("SpawnPoint non assignï¿½ !");
             return;
         }
 
@@ -91,7 +91,7 @@ public class Queue : ParentQueue
 
         if (characterPrefab != null)
         {
-            GameObject newCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject newCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.Euler(0, -90, 0));
             Character characterScript = newCharacter.GetComponent<Character>();
 
             if (characterScript != null)
@@ -102,7 +102,7 @@ public class Queue : ParentQueue
             }
             else
             {
-                Debug.LogWarning("Le prefab instancié ne contient pas de script Character !");
+                Debug.LogWarning("Le prefab instanciï¿½ ne contient pas de script Character !");
             }
 
             CharacterMood characterMood = newCharacter.GetComponent<CharacterMood>();
@@ -112,12 +112,12 @@ public class Queue : ParentQueue
             }
             else
             {
-                Debug.LogWarning("Le prefab instancié ne contient pas de script CharacterMood !");
+                Debug.LogWarning("Le prefab instanciï¿½ ne contient pas de script CharacterMood !");
             }
         }
         else
         {
-            Debug.LogWarning("Le prefab sélectionné est null !");
+            Debug.LogWarning("Le prefab sï¿½lectionnï¿½ est null !");
         }
     }
 

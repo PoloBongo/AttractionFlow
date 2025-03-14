@@ -72,7 +72,6 @@ public class CharacterMood : MonoBehaviour
         if (currentEmotion != newEmotion)
         {
             currentEmotion = newEmotion;
-            Debug.Log("New mood: " + newEmotion);
 
             if (slider != null && emotionSliderDecrease.ContainsKey(currentEmotion))
             {

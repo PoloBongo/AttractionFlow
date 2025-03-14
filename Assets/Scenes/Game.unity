@@ -834,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 4572701026653092832, guid: e440f1cd19f4e104bbafc801a83f8823,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4572701026653092832, guid: e440f1cd19f4e104bbafc801a83f8823,
         type: 3}
@@ -1213,7 +1213,9 @@ MonoBehaviour:
   queue: {fileID: 2093772807}
   openAttraction: {fileID: 1445468342}
   tempWaypoint: {fileID: 1957662252}
+  attractionWaypoint: {fileID: 0}
   cooldown: 1
+  attractionCooldown: 10
   targetRotationPlayer: 0
 --- !u!4 &1445468344
 Transform:
@@ -1425,7 +1427,9 @@ MonoBehaviour:
   queue: {fileID: 2093772807}
   openAttraction: {fileID: 1801789437}
   tempWaypoint: {fileID: 506988670}
+  attractionWaypoint: {fileID: 2108082777}
   cooldown: 1
+  attractionCooldown: 4
   targetRotationPlayer: 0
 --- !u!4 &1801789439
 Transform:
@@ -1446,6 +1450,7 @@ Transform:
   - {fileID: 1609954010}
   - {fileID: 51661322}
   - {fileID: 506988670}
+  - {fileID: 2108082777}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1957662251
@@ -1647,6 +1652,37 @@ Transform:
   - {fileID: 114790290}
   - {fileID: 1540349114}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2108082776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2108082777}
+  m_Layer: 0
+  m_Name: AttractionWaypoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2108082777
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108082776}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: 1, z: 6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1801789439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

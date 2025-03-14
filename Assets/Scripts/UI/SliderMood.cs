@@ -60,7 +60,6 @@ public class SliderMood : MonoBehaviour
     public void SetTargetValue(float targetValueDelta)
     {
         targetValue += targetValueDelta;
-        Debug.Log(targetValue);
         StopAllCoroutines();
         StartCoroutine(SmoothSlider());
     }

@@ -29,6 +29,8 @@ public class Character : MonoBehaviour
     {
         //DEV
         //StartCoroutine(Delete(7f));
+        
+        SetR
     }
 
     private void FixedUpdate()
@@ -51,7 +53,7 @@ public class Character : MonoBehaviour
 
             if (waypoints != null)
             {
-                //Si on est pas passé par tempWaypoint
+                //Si on est pas passï¿½ par tempWaypoint
                 if (currentWaypoint.transform.position == waypoints[currentWaypointID].transform.position)
                 {
                     isMoving = false;

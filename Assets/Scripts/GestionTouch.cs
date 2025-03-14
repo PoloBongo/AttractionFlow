@@ -4,7 +4,6 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class GestionTouch : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera _camera;

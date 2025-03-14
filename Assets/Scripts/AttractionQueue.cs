@@ -18,7 +18,7 @@ public class AttractionQueue : MonoBehaviour
     private Transform tempWaypoint;
 
     [SerializeField]
-    private int CharacterLimit = 5;         //Nombre max de personnages visibles à l'écran
+    private int CharacterLimit = 5;         //Nombre max de personnages visibles ï¿½ l'ï¿½cran
 
     [SerializeField]
     private float cooldown = 5f;
@@ -27,6 +27,12 @@ public class AttractionQueue : MonoBehaviour
     [SerializeField]
     List<Character> spawnedCharacters = new List<Character>();      //Personnages actuellement dans la file
 
+    [SerializeField]
+    private float targetRotationPlayer;
+    
+    private Quaternion RotationPlayer;
+    private float rotationSpeed = 5f;
+    
     private void Update()
     {
         ManageSpawn();
@@ -61,7 +67,7 @@ public class AttractionQueue : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Le prefab instancié ne contient pas de script Characters !");
+            Debug.LogWarning("Le prefab instanciï¿½ ne contient pas de script Characters !");
         }
     }
 
@@ -69,15 +75,15 @@ public class AttractionQueue : MonoBehaviour
     {
         if (spawnedCharacters.Count == 0)
         {
-            Debug.LogWarning("Aucun personnage à retirer de la file !");
+            Debug.LogWarning("Aucun personnage ï¿½ retirer de la file !");
             return null;
         }
 
-        // Si aucun personnage spécifié, on enlève le premier
+        // Si aucun personnage spï¿½cifiï¿½, on enlï¿½ve le premier
         Character characterToRemove = character ?? spawnedCharacters[0];
         spawnedCharacters.Remove(characterToRemove);
 
-        // Déplacer les personnages restants
+        // Dï¿½placer les personnages restants
         int startPoint = characterToRemove.GetWaypointID();
         MoveAllCharactersForward(startPoint);
 
@@ -87,14 +93,21 @@ public class AttractionQueue : MonoBehaviour
     private void MoveAllCharactersForward(int startPoint)
     {
 
-        //Tous les persos à partir de ce point avance au prochain waypoint
+        //Tous les persos ï¿½ partir de ce point avance au prochain waypoint
         for (int i = startPoint; i < spawnedCharacters.Count; i++)
         {
             Character character = spawnedCharacters[i];
             int currentWaypoint = character.GetWaypointID() - 1;
             Debug.Log(currentWaypoint);
             character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
+            character.gameObject.transform.rotation = Quaternion.Lerp(character.gameObject.transform.rotation, RotationPlayer, Time.deltaTime * rotationSpeed);
+            SetTargetRotation(targetRotationPlayer);
         }
+    }
+    
+    private void SetTargetRotation(float _yRotation)
+    {
+        RotationPlayer = Quaternion.Euler(0, _yRotation, 0);
     }
 
     private bool IsFull()

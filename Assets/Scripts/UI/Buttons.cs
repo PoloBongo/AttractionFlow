@@ -46,4 +46,14 @@ public class Buttons : MonoBehaviour
             false => 1f
         };
     }
+
+    public void EndGameRestart()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void EndGameMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
 }

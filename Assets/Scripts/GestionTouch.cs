@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GestionTouch : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
-    private Camera camera;
+    private Camera _camera;
     [SerializeField] private float speed = 1f;
     
     private void Awake()
@@ -22,7 +22,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     public void Update()
@@ -31,7 +31,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             if (touch.isTap)
             {
-                Ray ray = camera.ScreenPointToRay(touch.screenPosition);
+                Ray ray = _camera.ScreenPointToRay(touch.screenPosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     Debug.Log("Objet touché : " + hit.collider.gameObject.name);
@@ -52,8 +52,8 @@ public class NewBehaviourScript : MonoBehaviour
             else if (touch.inProgress)
             {
                 Vector2 delta = touch.delta;
-                camera.transform.position += new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
-                camera.transform.position = new Vector3(Mathf.Clamp(camera.transform.position.x, -10, 10), camera.transform.position.y, Mathf.Clamp(camera.transform.position.z, -10, 10));
+                _camera.transform.position += new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
+                _camera.transform.position = new Vector3(Mathf.Clamp(_camera.transform.position.x, -10, 10), _camera.transform.position.y, Mathf.Clamp(_camera.transform.position.z, -10, 10));
             }
         }
     }

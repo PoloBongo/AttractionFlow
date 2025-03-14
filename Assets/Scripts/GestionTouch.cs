@@ -8,7 +8,9 @@ public class GestionTouch : MonoBehaviour
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera _camera;
     [SerializeField] private float speed = 1f;
-    
+    private Vector3 velocity = Vector3.zero;
+    private bool isTouching = false;
+
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
@@ -22,10 +24,13 @@ public class GestionTouch : MonoBehaviour
     private void Start()
     {
         _camera = Camera.main;
+        Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
     }
 
     public void Update()
     {
+        isTouching = false;
+
         foreach (var touch in Touch.activeTouches)
         {
             if (touch.isTap)
@@ -35,7 +40,7 @@ public class GestionTouch : MonoBehaviour
                 {
                     Debug.Log("Objet touché : " + hit.collider.gameObject.name);
                     if (selectedAttraction && selectedAttraction.name != hit.collider.gameObject.name) selectedAttraction.Close();
-                
+
                     selectedAttraction = hit.collider.gameObject.GetComponent<OpenAttraction>();
 
                     if (selectedAttraction)
@@ -50,10 +55,18 @@ public class GestionTouch : MonoBehaviour
             }
             else if (touch.inProgress)
             {
+                isTouching = true;
                 Vector2 delta = touch.delta;
-                _camera.transform.position += new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
-                _camera.transform.position = new Vector3(Mathf.Clamp(_camera.transform.position.x, -10, 10), _camera.transform.position.y, Mathf.Clamp(_camera.transform.position.z, -10, 10));
+                Vector3 targetPosition = new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
+                velocity = Vector3.Lerp(velocity, targetPosition, 25f * Time.deltaTime);
             }
         }
+
+        if (!isTouching)
+        {
+            velocity = Vector3.Lerp(velocity, Vector3.zero, 5f * Time.deltaTime);
+        }
+
+        _camera.transform.position += velocity;
     }
 }

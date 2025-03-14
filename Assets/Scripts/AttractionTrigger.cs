@@ -23,6 +23,7 @@ public class AttractionTrigger : MonoBehaviour
     [SerializeField] private Type type;
     [SerializeField] private Attraction attraction;
     [SerializeField] private GameObject spawnVFX;
+    [SerializeField] private GameObject spawnText;
 
     private void Awake()
     {
@@ -59,13 +60,19 @@ public class AttractionTrigger : MonoBehaviour
                 moneyManager.AddMoney((int)attraction * 10 * bonus);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
 
-                if (spawnVFX != null)
+                if (spawnText != null)
                 {
-                    GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
+                    DOTweenText.InstanceDOTweenText.PlayText(100, spawnText);
                 }
+                
                 if (characterMood != null)
                 {
                     characterMood.BeHappy();
+                    
+                    if (spawnVFX != null)
+                    {
+                        GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
+                    }
                 }
                 else
                 {

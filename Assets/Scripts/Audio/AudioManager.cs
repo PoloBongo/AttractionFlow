@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("Property")]
     public static AudioManager InstanceAudioManager; 
-    [SerializeField] private List<AudioClip> audioClips;
     [SerializeField] private AudioClip actualClip;
     [SerializeField] private AudioSource audioSource;
 
@@ -28,9 +25,9 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(actualClip);
     }
     
-    public void SetAudioClip(int _index)
+    public void SetAudioClip(AudioClip _clip)
     {
-        actualClip = audioClips[_index];
+        actualClip = _clip;
         PlayAudioClip();
     }
 }

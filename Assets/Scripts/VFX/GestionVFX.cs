@@ -6,7 +6,7 @@ public class GestionVFX : MonoBehaviour
 {
     [Header("Property")]
     [SerializeField] private List<ParticleSystem> ParticleSystems;
-    public static GestionVFX InstanceGestionVFX; 
+    public static GestionVFX InstanceGestionVFX;
 
     private void Start()
     {

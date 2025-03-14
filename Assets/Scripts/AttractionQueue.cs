@@ -60,8 +60,8 @@ public class AttractionQueue : ParentQueue
         queue.RemoveCharacterFromQueue(character);
 
         int waypointID = spawnedCharacters.Count - 1;
-        character.SetWaypoint(tempWaypoint, waypointID);
-        character.SetWaypoints(waypoints);
+        character.SetWaypoint(waypoints[waypointID], waypointID);
+        character.SetWaypoint(tempWaypoint, -1, true);
 
         AssignCharacterMood(character.gameObject, this);
     }
@@ -71,7 +71,7 @@ public class AttractionQueue : ParentQueue
         attractionTimer += Time.deltaTime;
         Character character = GetFirstCharacterInQueue();
 
-        if (!IsEmpty() && attractionTimer >= attractionCooldown && character.transform.position == waypoints[0].position)
+        if (!IsEmpty() && attractionTimer >= attractionCooldown && Vector3.Distance(character.transform.position, waypoints[0].position) <= 0.05)
         {
             attractionTimer = 0;
             RemoveCharacterFromQueue(character);

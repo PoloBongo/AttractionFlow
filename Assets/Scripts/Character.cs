@@ -21,9 +21,9 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float runSpeed = 10f;
     private Transform currentWaypoint;
+    private Transform tempWaypoint;
     private int currentWaypointID;
     private bool isMoving = false;
-    private Transform[] waypoints;
     private Transform leaveWaypoint;
 
     [SerializeField]
@@ -48,25 +48,28 @@ public class Character : MonoBehaviour
 
     private void MoveToWaypoint()
     {
-        Vector3 direction = currentWaypoint.position - transform.position;
-        direction = direction.normalized;
-        transform.position += direction * speed * Time.deltaTime;
-
-        if (Vector3.Distance(currentWaypoint.position, transform.position) < 0.2f)
+        if (tempWaypoint == null)
         {
-            transform.position = currentWaypoint.position;
+            Vector3 direction = currentWaypoint.position - transform.position;
+            direction = direction.normalized;
+            transform.position += direction * speed * Time.deltaTime;
 
-            if (waypoints != null && currentWaypointID != -1)
+            if (Vector3.Distance(currentWaypoint.position, transform.position) < 0.2f)
             {
-                //Si on est pas pass� par tempWaypoint
-                if (currentWaypoint.transform.position == waypoints[currentWaypointID].transform.position)
-                {
-                    isMoving = false;
-                }
-                else
-                {
-                    currentWaypoint = waypoints[currentWaypointID];
-                }
+                transform.position = currentWaypoint.position;
+                isMoving = false;
+            }
+        }
+        else
+        {
+            Vector3 direction = tempWaypoint.position - transform.position;
+            direction = direction.normalized;
+            transform.position += direction * speed * Time.deltaTime;
+
+            if (Vector3.Distance(tempWaypoint.position, transform.position) < 0.2f)
+            {
+                transform.position = tempWaypoint.position;
+                tempWaypoint = null;
             }
         }
     }
@@ -78,10 +81,17 @@ public class Character : MonoBehaviour
         Debug.Log("New favourite attraction :" + favouriteAttraction);
     }
 
-    public void SetWaypoint(Transform waypoint, int id)
+    public void SetWaypoint(Transform waypoint, int id, bool temp = false)
     {
-        currentWaypoint = waypoint;
-        currentWaypointID = id;
+        if (temp)
+        {
+            tempWaypoint = waypoint;
+        }
+        else
+        {
+            currentWaypoint = waypoint;
+            currentWaypointID = id;
+        }
         isMoving = true;
     }
 
@@ -90,17 +100,12 @@ public class Character : MonoBehaviour
         return currentWaypointID;
     }
 
-    public void SetWaypoints(Transform[] newWaypoints)
-    {
-        waypoints = newWaypoints;
-    }
-
     public void Reset()
     {
         currentWaypoint = null;
+        tempWaypoint = null;
         currentWaypointID = 0;
         isMoving = false;
-        waypoints = null;
         speed = baseSpeed;
     }
 

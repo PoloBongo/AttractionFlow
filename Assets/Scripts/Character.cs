@@ -108,6 +108,7 @@ public class Character : MonoBehaviour
         isMoving = false;
         speed = baseSpeed;
         GetComponentInChildren<CharacterEmoji>().Reset();
+        GetComponent<CharacterMood>().SetEmotion(Emotion.NEUTRAL);
     }
 
     public void AddToPulling()

@@ -61,7 +61,7 @@ public class CharacterMood : MonoBehaviour
         SetEmotion(newEmotion);
     }
 
-    private void SetEmotion(Emotion newEmotion)
+    public void SetEmotion(Emotion newEmotion)
     {
         if (currentEmotion == newEmotion) return;
 

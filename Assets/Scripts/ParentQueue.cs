@@ -9,7 +9,7 @@ public class ParentQueue : MonoBehaviour
     protected Transform[] Waypoints;
 
     [SerializeField]
-    protected int CharacterLimit = 5;       // Nombre max de personnages sur l'écran
+    protected int CharacterLimit = 5;       // Nombre max de personnages sur l'Ã©cran
 
     [SerializeField]
     protected List<Character> spawnedCharacters = new List<Character>();        // Liste des personnages dans la file
@@ -18,15 +18,15 @@ public class ParentQueue : MonoBehaviour
     {
         if (spawnedCharacters.Count == 0)
         {
-            Debug.LogWarning("Aucun personnage à retirer de la file.");
+            Debug.LogWarning("Aucun personnage Ã  retirer de la file.");
             return null;
         }
-
-        // Si aucun personnage spécifié, on enlève le premier personnage
+    
+        // Si aucun personnage spÃ©cifiÃ©, on enlÃ¨ve le premier personnage
         Character characterToRemove = character ?? spawnedCharacters[0];
         spawnedCharacters.Remove(characterToRemove);
 
-        // Déplacer les personnages restants
+        // DÃ©placer les personnages restants
         int startPoint = characterToRemove.GetWaypointID();
         MoveAllCharactersForward(startPoint);
 

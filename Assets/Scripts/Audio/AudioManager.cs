@@ -5,21 +5,21 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("Property")]
-    public static AudioManager Instance; 
+    public static AudioManager InstanceAudioManager; 
     [SerializeField] private List<AudioClip> audioClips;
     [SerializeField] private AudioClip actualClip;
     [SerializeField] private AudioSource audioSource;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (InstanceAudioManager != null && InstanceAudioManager != this)
         {
             Destroy(this);
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(Instance);
+            InstanceAudioManager = this;
+            DontDestroyOnLoad(InstanceAudioManager);
         }
     }
 

@@ -19,12 +19,7 @@ public class Buttons : MonoBehaviour
     public void Resume()
     {
         isResume = !isResume;
-        Time.timeScale = isResume switch
-        {
-            true => 0f,
-            false => 1f
-        };
-        Pause();
+        ShowElementsManage();
     }
     
     public void Menu()
@@ -34,10 +29,21 @@ public class Buttons : MonoBehaviour
 
     public void Pause()
     {
+        ShowElementsManage();
+    }
+
+    private void ShowElementsManage()
+    {
         pauseMenu.SetActive(!isOpenPause);
         buttonPause.SetActive(isOpenPause);
         textMenu.SetActive(isOpenPause);
         slider.SetActive(isOpenPause);
         isOpenPause = !isOpenPause;
+        
+        Time.timeScale = isOpenPause switch
+        {
+            true => 0f,
+            false => 1f
+        };
     }
 }

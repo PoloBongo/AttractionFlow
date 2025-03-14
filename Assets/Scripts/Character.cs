@@ -29,8 +29,6 @@ public class Character : MonoBehaviour
     {
         //DEV
         //StartCoroutine(Delete(7f));
-        
-        SetR
     }
 
     private void FixedUpdate()

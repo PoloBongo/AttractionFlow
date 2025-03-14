@@ -36,6 +36,15 @@ public class AttractionQueue : MonoBehaviour
     private void Update()
     {
         ManageSpawn();
+        
+        foreach (Character character in spawnedCharacters)
+        {
+            character.transform.rotation = Quaternion.Lerp(
+                character.transform.rotation, 
+                Quaternion.Euler(0, targetRotationPlayer, 0), 
+                Time.deltaTime * rotationSpeed
+            );
+        }
     }
     private void ManageSpawn()
     {
@@ -100,14 +109,7 @@ public class AttractionQueue : MonoBehaviour
             int currentWaypoint = character.GetWaypointID() - 1;
             Debug.Log(currentWaypoint);
             character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
-            character.gameObject.transform.rotation = Quaternion.Lerp(character.gameObject.transform.rotation, RotationPlayer, Time.deltaTime * rotationSpeed);
-            SetTargetRotation(targetRotationPlayer);
         }
-    }
-    
-    private void SetTargetRotation(float _yRotation)
-    {
-        RotationPlayer = Quaternion.Euler(0, _yRotation, 0);
     }
 
     private bool IsFull()

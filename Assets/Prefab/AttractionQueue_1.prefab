@@ -185,6 +185,7 @@ MonoBehaviour:
   CharacterLimit: 4
   cooldown: 1
   spawnedCharacters: []
+  targetRotationPlayer: -180
 --- !u!1 &8465214122237009660
 GameObject:
   m_ObjectHideFlags: 0

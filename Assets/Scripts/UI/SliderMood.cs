@@ -12,11 +12,6 @@ public class SliderMood : MonoBehaviour
 
     private const float duration = 0.5f;
 
-    private void Start()
-    {
-        StartCoroutine(SmoothSlider(0.2f));
-    }
-
     public void OnValueChanged()
     {
         CheckStatusMood(sliderMood.value);

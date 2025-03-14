@@ -18,6 +18,7 @@ public class Queue : ParentQueue
 
     [SerializeField] private bool shouldSpawnCharacter = false;
     [SerializeField] private Pulling pulling;
+    [SerializeField] private Transform leaveWaypoint;
 
     void Start()
     {
@@ -108,6 +109,7 @@ public class Queue : ParentQueue
         spawnedCharacters.Add(characterScript);
         int waypointID = spawnedCharacters.Count - 1;
         characterScript.SetWaypoint(waypoints[waypointID], waypointID);
+        characterScript.SetLeaveWaypoint(leaveWaypoint);
 
         AssignCharacterMood(characterObject);
     }

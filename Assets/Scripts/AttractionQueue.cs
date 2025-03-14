@@ -63,7 +63,7 @@ public class AttractionQueue : ParentQueue
         character.SetWaypoint(tempWaypoint, waypointID);
         character.SetWaypoints(waypoints);
 
-        AssignCharacterMood(character.gameObject);
+        AssignCharacterMood(character.gameObject, this);
     }
 
     private void ManageAttraction()

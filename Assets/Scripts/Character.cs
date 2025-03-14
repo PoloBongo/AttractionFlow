@@ -16,10 +16,13 @@ public class Character : MonoBehaviour
     [Header("Movement")]
     [SerializeField]
     private float speed = 5f;
+    [SerializeField]
+    private float runSpeed = 10f;
     private Transform currentWaypoint;
     private int currentWaypointID;
     private bool isMoving = false;
     private Transform[] waypoints;
+    private Transform leaveWaypoint;
 
     [SerializeField]
     private FavouriteAttraction favouriteAttraction = FavouriteAttraction.NEUTRAL;
@@ -101,6 +104,16 @@ public class Character : MonoBehaviour
         {
             pulling.AddCharacter(this);
         }
+    }
+
+    public void SetLeaveWaypoint(Transform waypoint)
+    {
+        leaveWaypoint = waypoint;
+    }
+
+    public void Leave()
+    {
+        SetWaypoint(leaveWaypoint, -1);
     }
 
     //DEV

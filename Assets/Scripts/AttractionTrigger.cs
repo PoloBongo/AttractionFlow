@@ -45,25 +45,27 @@ public class AttractionTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Character") && moneyManager)
         {
+
             if (type == Type.Enter)
             {
                 moneyManager.AddMoney((int)attraction);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
-                Character character = other.GetComponent<Character>();
 
+                if (spawnVFX != null)
+                {
+                    GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
+                }
                 if (characterMood != null)
                 {
                     characterMood.BeHappy();
-                    if (spawnVFX != null)
-                    {
-                        GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
-                    }
-                    character.AddToPulling();
                 }
                 else
                 {
                     Debug.Log("No character mood found");
                 }
+
+                Character character = other.GetComponent<Character>();
+                character.AddToPulling();
             }
             else if (type == Type.Leave)
             {

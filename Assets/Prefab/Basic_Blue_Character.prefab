@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  runSpeed: 10
   favouriteAttraction: 0
 --- !u!136 &6866338959117294755
 CapsuleCollider:
@@ -114,9 +115,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentEmotion: 0
-  timeUntilNeutral: 2
-  timeUntilAngry: 5
-  timeUntilGone: 8
+  timeUntilAngry: 1
+  timeUntilRage: 2
+  timeUntilGone: 3
+  slider: {fileID: 0}
 --- !u!1 &1911724607436404201
 GameObject:
   m_ObjectHideFlags: 0

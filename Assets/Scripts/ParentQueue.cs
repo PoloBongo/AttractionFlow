@@ -18,15 +18,23 @@ public class ParentQueue : MonoBehaviour
         }
 
         Character characterToRemove = character ?? spawnedCharacters[0];
+        int startPoint = characterToRemove.GetWaypointID();
+
         spawnedCharacters.Remove(characterToRemove);
 
-        MoveAllCharactersForward(characterToRemove.GetWaypointID());
+        if (startPoint < spawnedCharacters.Count)
+        {
+            MoveAllCharactersForward(startPoint);
+        }
 
         return characterToRemove;
     }
 
+
     protected void MoveAllCharactersForward(int startPoint)
     {
+        if (startPoint < 0 || startPoint >= spawnedCharacters.Count) return;
+
         for (int i = startPoint; i < spawnedCharacters.Count; i++)
         {
             Character character = spawnedCharacters[i];

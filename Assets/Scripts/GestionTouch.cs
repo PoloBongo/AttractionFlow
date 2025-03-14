@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.Serialization;
@@ -17,6 +18,7 @@ public class GestionTouch : MonoBehaviour
     [SerializeField] private Vector2 cameraBoundsX;
     [SerializeField] private Vector2 cameraBoundsY;
     [SerializeField] private Vector2 cameraBoundsZ;
+    [SerializeField] private Bounds cameraBounds;
     [SerializeField] private float cameraBoundsSpeed;
 
     private void Awake()
@@ -81,7 +83,7 @@ public class GestionTouch : MonoBehaviour
             {
                 isTouching = true;
                 Vector2 delta = touch.delta;
-                Vector3 targetPosition = new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
+                Vector3 targetPosition = new Vector3(delta.y * speed, 0, -delta.x * speed);
                 velocity = Vector3.Lerp(velocity, targetPosition, velocityLerp * Time.deltaTime);
             }
         }
@@ -117,5 +119,11 @@ public class GestionTouch : MonoBehaviour
             Vector3 pos = new Vector3(_camera.transform.position.x, _camera.transform.position.y, posZ);
             _camera.transform.position = pos;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(cameraBounds.center, cameraBounds.size);
     }
 }

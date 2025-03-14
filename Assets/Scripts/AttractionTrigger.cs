@@ -49,10 +49,16 @@ public class AttractionTrigger : MonoBehaviour
             {
                 moneyManager.AddMoney((int)attraction);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
+                Character character = other.GetComponent<Character>();
+
                 if (characterMood != null)
                 {
                     characterMood.BeHappy();
-                    GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
+                    if (spawnVFX != null)
+                    {
+                        GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
+                    }
+                    character.AddToPulling();
                 }
                 else
                 {

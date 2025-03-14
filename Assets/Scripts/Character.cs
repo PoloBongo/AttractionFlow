@@ -86,6 +86,23 @@ public class Character : MonoBehaviour
         waypoints = newWaypoints;
     }
 
+    public void Reset()
+    {
+        currentWaypoint = null;
+        currentWaypointID = 0;
+        isMoving = false;
+        waypoints = null;
+    }
+
+    public void AddToPulling()
+    {
+        Pulling pulling = FindAnyObjectByType<Pulling>();
+        if (pulling != null)
+        {
+            pulling.AddCharacter(this);
+        }
+    }
+
     //DEV
     IEnumerator Delete(float timer)
     {

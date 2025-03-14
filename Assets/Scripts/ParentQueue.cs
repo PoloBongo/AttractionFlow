@@ -5,14 +5,9 @@ using UnityEngine;
 public class ParentQueue : MonoBehaviour
 {
     [Header("Gestion de la Queue")]
-    [SerializeField]
-    protected Transform[] Waypoints;
-
-    [SerializeField]
-    protected int CharacterLimit = 5;       // Nombre max de personnages sur l'écran
-
-    [SerializeField]
-    protected List<Character> spawnedCharacters = new List<Character>();        // Liste des personnages dans la file
+    [SerializeField] protected Transform[] waypoints;
+    [SerializeField] protected int characterLimit = 5;
+    [SerializeField] protected List<Character> spawnedCharacters = new List<Character>();
 
     public Character RemoveCharacterFromQueue(Character character = null)
     {
@@ -21,14 +16,11 @@ public class ParentQueue : MonoBehaviour
             Debug.LogWarning("Aucun personnage à retirer de la file.");
             return null;
         }
-    
-        // Si aucun personnage spécifié, on enlève le premier personnage
+
         Character characterToRemove = character ?? spawnedCharacters[0];
         spawnedCharacters.Remove(characterToRemove);
 
-        // Déplacer les personnages restants
-        int startPoint = characterToRemove.GetWaypointID();
-        MoveAllCharactersForward(startPoint);
+        MoveAllCharactersForward(characterToRemove.GetWaypointID());
 
         return characterToRemove;
     }
@@ -38,23 +30,12 @@ public class ParentQueue : MonoBehaviour
         for (int i = startPoint; i < spawnedCharacters.Count; i++)
         {
             Character character = spawnedCharacters[i];
-            int currentWaypoint = character.GetWaypointID() - 1;
-            character.SetWaypoint(Waypoints[currentWaypoint], currentWaypoint);
+            int newWaypointID = character.GetWaypointID() - 1;
+            character.SetWaypoint(waypoints[newWaypointID], newWaypointID);
         }
     }
 
-    protected bool IsFull()
-    {
-        return spawnedCharacters.Count >= CharacterLimit;
-    }
-
-    public bool IsEmpty()
-    {
-        return spawnedCharacters.Count == 0;
-    }
-
-    public Character GetFirstCharacterInQueue()
-    {
-        return spawnedCharacters.Count > 0 ? spawnedCharacters[0] : null;
-    }
+    protected bool IsFull() => spawnedCharacters.Count >= characterLimit;
+    public bool IsEmpty() => spawnedCharacters.Count == 0;
+    public Character GetFirstCharacterInQueue() => spawnedCharacters.Count > 0 ? spawnedCharacters[0] : null;
 }

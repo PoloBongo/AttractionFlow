@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using UnityEditor.DeviceSimulation;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
@@ -12,7 +8,6 @@ public class NewBehaviourScript : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera camera;
-    private bool isHolding = false;
     
     private void Awake()
     {
@@ -53,11 +48,9 @@ public class NewBehaviourScript : MonoBehaviour
                     }
                 }
             }
-            
             else if (touch.inProgress)
             {
                 Debug.Log("Touch in progress");
-                isHolding = true;
                 Vector2 delta = touch.delta;
                 camera.transform.position += new Vector3(-delta.x * Time.deltaTime * 3f, 0, -delta.y * Time.deltaTime * 3f);
                 camera.transform.position = new Vector3(Mathf.Clamp(camera.transform.position.x, -10, 10), camera.transform.position.y, Mathf.Clamp(camera.transform.position.z, -10, 10));

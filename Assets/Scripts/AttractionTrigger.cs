@@ -5,9 +5,9 @@ using UnityEngine;
 
 enum Attraction
 {
-    Attraction1 = 10,
-    Attraction2 = 20,
-    Attraction3 = 30
+    Attraction1 = 1,
+    Attraction2 = 2,
+    Attraction3 = 3
 }
 
 enum Type
@@ -45,10 +45,18 @@ public class AttractionTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Character") && moneyManager)
         {
+            Character character = other.GetComponent<Character>();
 
             if (type == Type.Enter)
             {
-                moneyManager.AddMoney((int)attraction);
+                int bonus = 1;
+
+                if ((int)character.GetFavouriteAttraction() == (int)attraction)
+                {
+                    bonus = 4;
+                }
+
+                moneyManager.AddMoney((int)attraction * 10 * bonus);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
 
                 if (spawnVFX != null)
@@ -69,7 +77,6 @@ public class AttractionTrigger : MonoBehaviour
                 moneyManager.SubtractMoney((int)attraction);
             }
 
-            Character character = other.GetComponent<Character>();
             character.AddToPulling();
 
         }

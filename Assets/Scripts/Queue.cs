@@ -20,6 +20,11 @@ public class Queue : ParentQueue
     [SerializeField] private Pulling pulling;
     [SerializeField] private Transform leaveWaypoint;
 
+    [Header("Attraction Favorite")]
+    [SerializeField] private int favouriteAttractionCooldown = 5;
+    [SerializeField] private float favouriteAttractionOdds = 0.2f;
+    private int favouriteAttractionTimer = 0;
+
     void Start()
     {
         if (characterPrefabs == null || characterPrefabs.Length == 0)
@@ -111,6 +116,11 @@ public class Queue : ParentQueue
         characterScript.SetWaypoint(waypoints[waypointID], waypointID);
         characterScript.SetLeaveWaypoint(leaveWaypoint);
 
+        if (ManageFavouriteAttraction())
+        {
+            characterScript.SetRandomFavouriteAttraction();
+        }
+
         AssignCharacterMood(characterObject);
     }
 
@@ -145,7 +155,26 @@ public class Queue : ParentQueue
         int waypointID = spawnedCharacters.Count - 1;
         characterScript.SetWaypoint(waypoints[waypointID], waypointID);
 
+        if (ManageFavouriteAttraction())
+        {
+            characterScript.SetRandomFavouriteAttraction();
+        }
+
         AssignCharacterMood(characterScript.gameObject);
         return true;
+    }
+
+    private bool ManageFavouriteAttraction()
+    {
+        favouriteAttractionTimer++;
+        if (favouriteAttractionTimer >= favouriteAttractionCooldown)
+        {
+            if (Random.value <= favouriteAttractionOdds)
+            {
+                favouriteAttractionTimer = 0;
+                return true;
+            }
+        }
+        return false;
     }
 }

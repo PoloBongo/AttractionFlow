@@ -16,7 +16,6 @@ public class Pulling : MonoBehaviour
     {
         if (characterStored.Count < maxPull)
         {
-            Debug.Log("new pull");
             characterStored.Add(newCharacter);
             if (position != null)
             {

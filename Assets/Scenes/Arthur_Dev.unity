@@ -6549,6 +6549,11 @@ PrefabInstance:
       objectReference: {fileID: 1602612250}
     - target: {fileID: 5999160195337105432, guid: 5db4d14e48ebb724385802fff499474f,
         type: 3}
+      propertyPath: attractionCooldown
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999160195337105432, guid: 5db4d14e48ebb724385802fff499474f,
+        type: 3}
       propertyPath: attractionWaypoint
       value: 
       objectReference: {fileID: 1968411275}
@@ -6587,6 +6592,11 @@ PrefabInstance:
       propertyPath: spawnVFX
       value: 
       objectReference: {fileID: 123357089}
+    - target: {fileID: 6314577460910996768, guid: 5db4d14e48ebb724385802fff499474f,
+        type: 3}
+      propertyPath: attraction
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7146856165137293996, guid: 5db4d14e48ebb724385802fff499474f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6708,6 +6718,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5165667885182266371, guid: b6e26a68013da5440804a3c233c1747d,
+        type: 3}
+      propertyPath: attraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6657887794132988030, guid: b6e26a68013da5440804a3c233c1747d,
         type: 3}
       propertyPath: queue
@@ -6723,6 +6738,11 @@ PrefabInstance:
       propertyPath: openAttraction
       value: 
       objectReference: {fileID: 1116716892}
+    - target: {fileID: 6657887794132988030, guid: b6e26a68013da5440804a3c233c1747d,
+        type: 3}
+      propertyPath: attractionCooldown
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6657887794132988030, guid: b6e26a68013da5440804a3c233c1747d,
         type: 3}
       propertyPath: waypoints.Array.size
@@ -7132,6 +7152,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 25206877}
+    - target: {fileID: 4087730624127944337, guid: 5d63c4b80e1c481498d5c7b6701700e9,
+        type: 3}
+      propertyPath: favouriteAttractionCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5104301971527754316, guid: 5d63c4b80e1c481498d5c7b6701700e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7255,6 +7280,11 @@ PrefabInstance:
       propertyPath: spawnVFX
       value: 
       objectReference: {fileID: 240330928}
+    - target: {fileID: 6027383918911385822, guid: 5ce6a81513269d94f826e92f64935720,
+        type: 3}
+      propertyPath: attraction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7479401968787282595, guid: 5ce6a81513269d94f826e92f64935720,
         type: 3}
       propertyPath: queue
@@ -7270,6 +7300,11 @@ PrefabInstance:
       propertyPath: openAttraction
       value: 
       objectReference: {fileID: 1929643951}
+    - target: {fileID: 7479401968787282595, guid: 5ce6a81513269d94f826e92f64935720,
+        type: 3}
+      propertyPath: attractionCooldown
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7479401968787282595, guid: 5ce6a81513269d94f826e92f64935720,
         type: 3}
       propertyPath: waypoints.Array.size

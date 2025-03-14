@@ -65,7 +65,6 @@ public class CharacterMood : MonoBehaviour
         if (currentEmotion == newEmotion) return;
 
         currentEmotion = newEmotion;
-        Debug.Log($"{gameObject.name} est maintenant {currentEmotion}");
 
         if (slider != null && EmotionSliderImpact.ContainsKey(newEmotion))
         {

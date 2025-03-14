@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-enum FavouriteAttraction
+public enum FavouriteAttraction
 {
-    NEUTRAL,
-    ATTRACTION1,
-    ATTRACTION2,
-    ATTRACTION3
+    NEUTRAL = 0,
+    ATTRACTION1 = 1,
+    ATTRACTION2 = 2,
+    ATTRACTION3 = 3
 }
 
 public class Character : MonoBehaviour
@@ -73,6 +73,8 @@ public class Character : MonoBehaviour
     public void SetRandomFavouriteAttraction()
     {
         favouriteAttraction = (FavouriteAttraction)Random.Range(1, 4);
+
+        Debug.Log("New favourite attraction :" + favouriteAttraction);
     }
 
     public void SetWaypoint(Transform waypoint, int id)
@@ -121,6 +123,10 @@ public class Character : MonoBehaviour
         speed = runSpeed;
     }
 
+    public FavouriteAttraction GetFavouriteAttraction()
+    {
+        return favouriteAttraction;
+    }
     //DEV
     IEnumerator Delete(float timer)
     {

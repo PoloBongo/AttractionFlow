@@ -9,8 +9,8 @@ public class Queue : MonoBehaviour
     private Transform[] Waypoints;
 
     [SerializeField]
-    private int CharacterLimit = 5;             //Nombre max de personnages visibles à l'écran
-    private int CharacterOutsideQueue = 0;      //Nombre de personnages hors de l'écran
+    private int CharacterLimit = 5;             //Nombre max de personnages visibles ï¿½ l'ï¿½cran
+    private int CharacterOutsideQueue = 0;      //Nombre de personnages hors de l'ï¿½cran
 
     [Header("Spawn")]
     [SerializeField]
@@ -20,7 +20,7 @@ public class Queue : MonoBehaviour
     private Transform spawnPoint;
 
     [SerializeField]
-    private int MaxCharacterSpawned;        //Nombre de personnages à faire spawn au total
+    private int MaxCharacterSpawned;        //Nombre de personnages ï¿½ faire spawn au total
     private int CharacterSpawned = 0;       //Nombre de personnages spawn
 
     [SerializeField]
@@ -32,12 +32,14 @@ public class Queue : MonoBehaviour
 
     [SerializeField]
     List<Character> spawnedCharacters = new List<Character>();      //Personnages actuellement dans la file
+    
+    private Quaternion RotationPlayer;
 
     void Start()
     {
         if (characterPrefabs == null || characterPrefabs.Length == 0)
         {
-            Debug.LogError("Aucun prefab assigné dans characterPrefabs ! Désactivation du spawn.");
+            Debug.LogError("Aucun prefab assignï¿½ dans characterPrefabs ! Dï¿½sactivation du spawn.");
             shouldSpawnCharacter = false;
         }
     }
@@ -67,12 +69,12 @@ public class Queue : MonoBehaviour
                 if (CharacterSpawned >= MaxCharacterSpawned)
                 {
                     shouldSpawnCharacter = false;
-                    Debug.Log("Fin du spawn : tous les personnages ont été générés.");
+                    Debug.Log("Fin du spawn : tous les personnages ont ï¿½tï¿½ gï¿½nï¿½rï¿½s.");
                     return;
                 }
                 CharacterSpawned++;
 
-                //Si il y a de la place sur l'écran on spawn le personnage, sinon on le stock ailleurs
+                //Si il y a de la place sur l'ï¿½cran on spawn le personnage, sinon on le stock ailleurs
                 if (spawnedCharacters.Count < CharacterLimit)
                 {
                     SpawnCharacter();
@@ -89,7 +91,7 @@ public class Queue : MonoBehaviour
     {
         if (spawnPoint == null)
         {
-            Debug.LogWarning("SpawnPoint non assigné !");
+            Debug.LogWarning("SpawnPoint non assignï¿½ !");
             return;
         }
 
@@ -97,7 +99,7 @@ public class Queue : MonoBehaviour
 
         if (characterPrefab != null)
         {
-            GameObject newCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.identity);
+            GameObject newCharacter = Instantiate(characterPrefab, spawnPoint.position, Quaternion.Euler(0, -90, 0));
             Character characterScript = newCharacter.GetComponent<Character>();
 
             if (characterScript != null)
@@ -115,12 +117,12 @@ public class Queue : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Le prefab instancié ne contient pas de script Characters !");
+                Debug.LogWarning("Le prefab instanciï¿½ ne contient pas de script Characters !");
             }
         }
         else
         {
-            Debug.LogWarning("Le prefab sélectionné est null !");
+            Debug.LogWarning("Le prefab sï¿½lectionnï¿½ est null !");
         }
     }
 
@@ -128,15 +130,15 @@ public class Queue : MonoBehaviour
     {
         if (spawnedCharacters.Count == 0)
         {
-            Debug.LogWarning("Aucun personnage à retirer de la file !");
+            Debug.LogWarning("Aucun personnage ï¿½ retirer de la file !");
             return null;
         }
 
-        // Si aucun personnage spécifié, on enlève le premier
+        // Si aucun personnage spï¿½cifiï¿½, on enlï¿½ve le premier
         Character characterToRemove = character ?? spawnedCharacters[0];
         spawnedCharacters.Remove(characterToRemove);
 
-        // Déplacer les personnages restants
+        // Dï¿½placer les personnages restants
         int startPoint = characterToRemove.GetWaypointID();
         MoveAllCharactersForward(startPoint);
 
@@ -146,7 +148,7 @@ public class Queue : MonoBehaviour
     private void MoveAllCharactersForward(int startPoint)
     {
 
-        //Tous les persos à partir de ce point avance au prochain waypoint
+        //Tous les persos ï¿½ partir de ce point avance au prochain waypoint
         for (int i = startPoint; i < spawnedCharacters.Count; i++)
         {
             Character character = spawnedCharacters[i];

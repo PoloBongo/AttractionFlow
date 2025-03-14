@@ -8,12 +8,14 @@ public class GestionTouch : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera _camera;
+    [SerializeField] private float zoomSpeed;
     [SerializeField] private float speed = 1f;
     private Vector3 velocity = Vector3.zero;
     [SerializeField] private float velocityLerp;
     [SerializeField] private float velocityDecreaseLerp;
     private bool isTouching = false;
     [SerializeField] private Vector2 cameraBoundsX;
+    [SerializeField] private Vector2 cameraBoundsY;
     [SerializeField] private Vector2 cameraBoundsZ;
     [SerializeField] private float cameraBoundsSpeed;
 
@@ -37,6 +39,22 @@ public class GestionTouch : MonoBehaviour
     {
         isTouching = false;
 
+        if (Touch.activeTouches.Count == 2)
+        {
+            Touch touch0 = Touch.activeTouches[0];
+            Touch touch1 = Touch.activeTouches[1];
+            
+            Vector2 touch0PrevPos = touch0.screenPosition - touch0.delta;
+            Vector2 touch1PrevPos = touch1.screenPosition - touch1.delta;
+            
+            float prevTouchDeltaMag = (touch0PrevPos - touch1PrevPos).magnitude;
+            float touchDeltaMag = (touch0.screenPosition - touch1.screenPosition).magnitude;
+            float difference = prevTouchDeltaMag - touchDeltaMag;
+            
+            Vector3 targetPosition = new Vector3(0, difference * Time.deltaTime * zoomSpeed, 0);
+            velocity = Vector3.Lerp(velocity, targetPosition, velocityLerp * Time.deltaTime);
+        }
+        
         foreach (var touch in Touch.activeTouches)
         {
             if (touch.isTap)
@@ -83,6 +101,13 @@ public class GestionTouch : MonoBehaviour
         {
             float posX = Mathf.Lerp(_camera.transform.position.x, _camera.transform.position.x > cameraBoundsX[1] ? cameraBoundsX[1] : cameraBoundsX[0], cameraBoundsSpeed * Time.deltaTime);
             Vector3 pos = new Vector3(posX, _camera.transform.position.y, _camera.transform.position.z);
+            _camera.transform.position = pos;
+        }
+        
+        if (_camera.transform.position.y > cameraBoundsY[1] || _camera.transform.position.y < cameraBoundsY[0])
+        {
+            float posY = Mathf.Lerp(_camera.transform.position.y, _camera.transform.position.y > cameraBoundsY[1] ? cameraBoundsY[1] : cameraBoundsY[0], cameraBoundsSpeed * Time.deltaTime);
+            Vector3 pos = new Vector3(_camera.transform.position.x, posY, _camera.transform.position.z);
             _camera.transform.position = pos;
         }
         

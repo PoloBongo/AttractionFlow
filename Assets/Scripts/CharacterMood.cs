@@ -21,7 +21,7 @@ public class CharacterMood : MonoBehaviour
     [SerializeField] private float timeUntilGone = 30f;
 
     [Header("Référence externe")]
-    [SerializeField] private SliderMood slider; // Assigné dans l'Inspector
+    [SerializeField] private SliderMood slider;
 
     private ParentQueue currentQueue;
     private Coroutine moodCoroutine;
@@ -37,9 +37,10 @@ public class CharacterMood : MonoBehaviour
 
     private void Start()
     {
+        slider = FindAnyObjectByType<SliderMood>();
         if (slider == null)
         {
-            Debug.Log("SliderMood non assigné dans l'inspecteur !");
+            Debug.Log("SliderMood non assigné !");
         }
 
         moodCoroutine = StartCoroutine(MoodChecker());

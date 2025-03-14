@@ -63,15 +63,15 @@ public class AttractionTrigger : MonoBehaviour
                 {
                     Debug.Log("No character mood found");
                 }
-
-                Character character = other.GetComponent<Character>();
-                character.AddToPulling();
             }
             else if (type == Type.Leave)
             {
                 moneyManager.SubtractMoney((int)attraction);
             }
-            
+
+            Character character = other.GetComponent<Character>();
+            character.AddToPulling();
+
         }
     }
 }

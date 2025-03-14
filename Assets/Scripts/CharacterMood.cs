@@ -22,9 +22,11 @@ public class CharacterMood : MonoBehaviour
     private float timeUntilRage = 25f;
     [SerializeField]
     private float timeUntilGone = 30f;
+
     [SerializeField]
     private Dictionary<Emotion, float> emotionSliderDecrease = new Dictionary<Emotion, float>
 {
+    { Emotion.HAPPY, +0.1f },
     { Emotion.ANGRY, -0.05f },
     { Emotion.RAGE, -0.1f },
     { Emotion.GONE, -0.2f }
@@ -89,8 +91,12 @@ public class CharacterMood : MonoBehaviour
         {
             StopCoroutine(moodCoroutine);
         }
-        currentEmotion = Emotion.HAPPY;
-        moodCoroutine = StartCoroutine(MoodChecker());
+    }
+
+    public void BeHappy()
+    {
+        ResetTimer();
+        SetEmotion(Emotion.HAPPY);
     }
 
     public void SetQueue(ParentQueue queue)

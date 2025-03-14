@@ -15,9 +15,11 @@ public class AttractionQueue : ParentQueue
     private Transform tempWaypoint;
 
     [SerializeField]
-    private float cooldown = 5f;
-
+    private float cooldown = 5f;        //Temps avant que quelqu'un aille dans la queue
     private float timer = 0f;
+
+    [SerializeField]
+    private float attractionCooldown = 10f;         //Temps d'attente entre chaque personne
 
     [SerializeField]
     private float targetRotationPlayer;

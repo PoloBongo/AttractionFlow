@@ -54,6 +54,15 @@ public class AttractionTrigger : MonoBehaviour
             if (type == Type.Enter)
             {
                 moneyManager.AddMoney((int)attraction);
+                CharacterMood characterMood = other.GetComponent<CharacterMood>();
+                if (characterMood != null)
+                {
+                    characterMood.BeHappy();
+                }
+                else
+                {
+                    Debug.Log("No character mood found");
+                }
             }
             else if (type == Type.Leave)
             {

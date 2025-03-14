@@ -11,25 +11,25 @@ public class OpenAttraction : MonoBehaviour
 
     void Open()
     {
+        isOpen = true;
         fenceAnimator.SetBool(IsOpen, isOpen);
         PlayOpenAnimation();
         
-        Debug.Log("Open Attraction");
+        Debug.Log("Open Attraction" + fenceAnimator);
     }
 
-    void Close()
+    public void Close()
     {
+        isOpen = false;
         fenceAnimator.SetBool(IsOpen, isOpen);
         PlayCloseAnimation();
         
-        Debug.Log("Close Attraction");
+        Debug.Log("Close Attraction" + fenceAnimator);
     }
 
     public void InteractAttraction()
     {
-        isOpen = !isOpen;
-        
-        if (isOpen)
+        if (!isOpen)
         {
             Open();
         }

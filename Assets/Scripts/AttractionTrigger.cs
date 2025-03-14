@@ -22,7 +22,7 @@ public class AttractionTrigger : MonoBehaviour
     [SerializeField] private MoneyManager moneyManager;
     [SerializeField] private Type type;
     [SerializeField] private Attraction attraction;
-    
+    [SerializeField] private GameObject spawnVFX;
 
     private void Awake()
     {
@@ -40,12 +40,6 @@ public class AttractionTrigger : MonoBehaviour
             moneyManager = FindObjectOfType<MoneyManager>();
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     
     private void OnTriggerEnter(Collider other)
     {
@@ -58,6 +52,7 @@ public class AttractionTrigger : MonoBehaviour
                 if (characterMood != null)
                 {
                     characterMood.BeHappy();
+                    GestionVFX.InstanceGestionVFX.PlayVFX(0, spawnVFX);
                 }
                 else
                 {

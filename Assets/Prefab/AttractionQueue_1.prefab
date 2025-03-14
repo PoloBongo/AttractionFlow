@@ -124,6 +124,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1505121915081180642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4573717685884068805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 498067796092435772}
+  m_Layer: 0
+  m_Name: AWaypoint1_Final
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498067796092435772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4573717685884068805}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1505121915081180642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7092976431933086738
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +189,9 @@ Transform:
   - {fileID: 514848761013344590}
   - {fileID: 2110438960028854659}
   - {fileID: 4939307967939358030}
+  - {fileID: 498067796092435772}
   - {fileID: 2997634368542931066}
+  - {fileID: 5868160936486468875}
   - {fileID: 2100169332010383448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -174,17 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ede65990137e7b1469ddb584c31a9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  queue: {fileID: 0}
-  openAttraction: {fileID: 0}
   Waypoints:
   - {fileID: 4939307967939358030}
   - {fileID: 2110438960028854659}
   - {fileID: 514848761013344590}
   - {fileID: 5734929851215769244}
-  tempWaypoint: {fileID: 2100169332010383448}
   CharacterLimit: 4
-  cooldown: 1
   spawnedCharacters: []
+  queue: {fileID: 0}
+  openAttraction: {fileID: 0}
+  tempWaypoint: {fileID: 2100169332010383448}
+  attractionWaypoint: {fileID: 498067796092435772}
+  cooldown: 1
+  attractionCooldown: 10
   targetRotationPlayer: -180
 --- !u!1 &8465214122237009660
 GameObject:
@@ -217,6 +252,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1505121915081180642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8883396051969227139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5868160936486468875}
+  m_Layer: 0
+  m_Name: SpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5868160936486468875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8883396051969227139}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.307, y: 7.21, z: -2.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1505121915081180642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1651910427941553050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 4572701026653092832, guid: e440f1cd19f4e104bbafc801a83f8823,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: -0.42
       objectReference: {fileID: 0}
     - target: {fileID: 4572701026653092832, guid: e440f1cd19f4e104bbafc801a83f8823,
         type: 3}
@@ -280,6 +346,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5862807494930657177, guid: e440f1cd19f4e104bbafc801a83f8823,
+        type: 3}
+      propertyPath: spawnVFX
+      value: 
+      objectReference: {fileID: 8883396051969227139}
     - target: {fileID: 5862807494930657177, guid: e440f1cd19f4e104bbafc801a83f8823,
         type: 3}
       propertyPath: attraction

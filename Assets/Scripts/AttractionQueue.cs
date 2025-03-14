@@ -9,9 +9,6 @@ public class AttractionQueue : ParentQueue
 
     [SerializeField]
     private OpenAttraction openAttraction;
-    
-    [SerializeField]
-    private GameObject spawnVFX;
 
     [Header("Gestion de la Queue")]
     [SerializeField]

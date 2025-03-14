@@ -192,4 +192,13 @@ public class Queue : ParentQueue
             startCooldown = minCooldown;
         }
     }
+
+    public bool IsPlayerAtEntrance()
+    {
+        if (Vector3.Distance(spawnedCharacters[0].transform.position, waypoints[0].transform.position) < 0.2f)
+        {
+            return true;
+        }
+        return false;
+    }
 }

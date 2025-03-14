@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttractionQueue : ParentQueue
 {
-    [SerializeField] private ParentQueue queue;
+    [SerializeField] private Queue queue;
     [SerializeField] private OpenAttraction openAttraction;
 
     [Header("Gestion de la Queue")]
@@ -36,7 +36,7 @@ public class AttractionQueue : ParentQueue
         ManageAttraction();
 
         timer += Time.deltaTime;
-        if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty() && timer >= cooldown)
+        if (openAttraction.GetIsOpen() && !IsFull() && !queue.IsEmpty() && timer >= cooldown && queue.IsPlayerAtEntrance())
         {
             timer = 0;
             TransferCharacterToAttraction();

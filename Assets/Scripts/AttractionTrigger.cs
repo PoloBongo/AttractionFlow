@@ -57,12 +57,12 @@ public class AttractionTrigger : MonoBehaviour
                     bonus = 4;
                 }
 
-                moneyManager.AddMoney((int)attraction * 10 * bonus);
+                moneyManager.AddMoney((int)attraction * bonus);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
 
                 if (spawnText != null)
                 {
-                    DOTweenText.InstanceDOTweenText.PlayText(100, spawnText);
+                    DOTweenText.InstanceDOTweenText.PlayText((int)attraction * bonus, spawnText);
                 }
                 
                 if (characterMood != null)

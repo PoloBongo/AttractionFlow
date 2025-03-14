@@ -4258,7 +4258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   money: 100
   moneyText: {fileID: 1044117515}
-  rectTransform: {fileID: 0}
 --- !u!4 &526487536
 Transform:
   m_ObjectHideFlags: 0
@@ -5833,7 +5832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 23.409, y: -103.699, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.197, y: 0.145}
+  m_AnchoredPosition: {x: -0.293, y: 0.145}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &729321657
@@ -8194,7 +8193,7 @@ Transform:
   m_GameObject: {fileID: 1079205955}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.138, y: 0.092, z: -1.235}
+  m_LocalPosition: {x: -0.34, y: 0.092, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8399,7 +8398,7 @@ Transform:
   m_GameObject: {fileID: 1096616658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.412, y: 1.538, z: -0.669}
+  m_LocalPosition: {x: 0.412, y: 1.538, z: 0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8803,7 +8802,7 @@ Transform:
   m_GameObject: {fileID: 1228738650}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.128, y: 0.132, z: -0.597}
+  m_LocalPosition: {x: -0.13, y: 0.132, z: -0.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10978,8 +10977,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4ea35f3aaeb238f49a06f75a6e57d10d, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 4ea35f3aaeb238f49a06f75a6e57d10d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18932,7 +18931,7 @@ PrefabInstance:
     - target: {fileID: 4087730624127944337, guid: 5d63c4b80e1c481498d5c7b6701700e9,
         type: 3}
       propertyPath: maxCharacterSpawned
-      value: 50
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4087730624127944337, guid: 5d63c4b80e1c481498d5c7b6701700e9,
         type: 3}

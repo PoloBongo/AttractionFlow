@@ -77,7 +77,7 @@ public class AttractionTrigger : MonoBehaviour
                 moneyManager.SubtractMoney((int)attraction);
             }
 
-            character.AddToPulling();
+            character.StartCoroutine(character.WaitAndDelete());
 
         }
     }

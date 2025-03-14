@@ -20,6 +20,7 @@ public class Pulling : MonoBehaviour
             if (position != null)
             {
                 newCharacter.transform.position = position.position;
+                newCharacter.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             else
             {
@@ -30,6 +31,7 @@ public class Pulling : MonoBehaviour
         else
         {
             Debug.Log("Pulling is full");
+            Destroy(newCharacter);
         }
     }
 

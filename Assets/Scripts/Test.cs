@@ -12,7 +12,8 @@ public class NewBehaviourScript : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera camera;
-
+    private bool isHolding = false;
+    
     private void Awake()
     {
         EnhancedTouchSupport.Enable();
@@ -32,7 +33,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         foreach (var touch in Touch.activeTouches)
         {
-            if (touch.ended)
+            if (touch.isTap)
             {
                 Ray ray = camera.ScreenPointToRay(touch.screenPosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -51,6 +52,15 @@ public class NewBehaviourScript : MonoBehaviour
                         Debug.Log("n'arrive pas a get le comp");
                     }
                 }
+            }
+            
+            else if (touch.inProgress)
+            {
+                Debug.Log("Touch in progress");
+                isHolding = true;
+                Vector2 delta = touch.delta;
+                camera.transform.position += new Vector3(-delta.x * Time.deltaTime * 3f, 0, -delta.y * Time.deltaTime * 3f);
+                camera.transform.position = new Vector3(Mathf.Clamp(camera.transform.position.x, -10, 10), camera.transform.position.y, Mathf.Clamp(camera.transform.position.z, -10, 10));
             }
         }
     }

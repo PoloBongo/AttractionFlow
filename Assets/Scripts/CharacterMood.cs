@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 enum Emotion
@@ -6,44 +7,64 @@ enum Emotion
     HAPPY,
     NEUTRAL,
     ANGRY,
+    RAGE,
     GONE
 }
 
 public class CharacterMood : MonoBehaviour
 {
     [SerializeField]
-    private Emotion currentEmotion = Emotion.HAPPY;
+    private Emotion currentEmotion = Emotion.NEUTRAL;
 
     [SerializeField]
-    private float timeUntilNeutral = 15f;
+    private float timeUntilAngry = 15f;
     [SerializeField]
-    private float timeUntilAngry = 25f;
+    private float timeUntilRage = 25f;
     [SerializeField]
-    private float timeUntilGone = 35f;
+    private float timeUntilGone = 30f;
 
+    [SerializeField]
+    private Dictionary<Emotion, float> emotionSliderDecrease = new Dictionary<Emotion, float>
+{
+    { Emotion.HAPPY, +0.1f },
+    { Emotion.ANGRY, -0.05f },
+    { Emotion.RAGE, -0.1f },
+    { Emotion.GONE, -0.2f }
+};
     private ParentQueue currentQueue;
 
+    private SliderMood slider;
+
+    private Coroutine moodCoroutine;
     private void Start()
     {
         StartCoroutine(MoodChecker());
+        slider = FindObjectOfType<SliderMood>();
     }
 
     private IEnumerator MoodChecker()
     {
-        yield return new WaitForSeconds(timeUntilNeutral);
-        SetEmotion(Emotion.NEUTRAL);
-
-        yield return new WaitForSeconds(timeUntilAngry - timeUntilNeutral);
+        yield return new WaitForSeconds(timeUntilAngry);
         SetEmotion(Emotion.ANGRY);
 
-        yield return new WaitForSeconds(timeUntilGone - timeUntilAngry);
+        yield return new WaitForSeconds(timeUntilRage - timeUntilAngry);
+        SetEmotion(Emotion.RAGE);
+
+        yield return new WaitForSeconds(timeUntilGone - timeUntilRage);
         SetEmotion(Emotion.GONE);
         Leave();
     }
 
     void Leave()
     {
-        currentQueue.RemoveCharacterFromQueue(GetComponent<Character>());
+        if (currentQueue != null)
+        {
+            currentQueue.RemoveCharacterFromQueue(GetComponent<Character>());
+        }
+        else
+        {
+            Debug.LogWarning("CharacterMood: currentQueue is null, cannot remove character.");
+        }
     }
 
     private void SetEmotion(Emotion newEmotion)
@@ -51,15 +72,30 @@ public class CharacterMood : MonoBehaviour
         if (currentEmotion != newEmotion)
         {
             currentEmotion = newEmotion;
-            Debug.Log("New mood: " + newEmotion);
+
+            if (slider != null && emotionSliderDecrease.ContainsKey(currentEmotion))
+            {
+                slider.SetTargetValue(emotionSliderDecrease[currentEmotion]);
+            }
+            else
+            {
+                Debug.LogWarning("SliderMood not found or emotion not in dictionary.");
+            }
         }
     }
 
     public void ResetTimer()
     {
-        StopAllCoroutines();
-        currentEmotion = Emotion.HAPPY;
-        StartCoroutine(MoodChecker());
+        if (moodCoroutine != null)
+        {
+            StopCoroutine(moodCoroutine);
+        }
+    }
+
+    public void BeHappy()
+    {
+        ResetTimer();
+        SetEmotion(Emotion.HAPPY);
     }
 
     public void SetQueue(ParentQueue queue)

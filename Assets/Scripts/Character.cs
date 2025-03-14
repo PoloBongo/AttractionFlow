@@ -49,7 +49,7 @@ public class Character : MonoBehaviour
         {
             transform.position = currentWaypoint.position;
 
-            if (waypoints != null)
+            if (waypoints != null && currentWaypointID != -1)
             {
                 //Si on est pas pass� par tempWaypoint
                 if (currentWaypoint.transform.position == waypoints[currentWaypointID].transform.position)

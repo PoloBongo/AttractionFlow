@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: character-male-b 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b0244ed44e7151488d10b332f5f1585,
+        type: 3}
+      propertyPath: m_TagString
+      value: Character
+      objectReference: {fileID: 0}
     - target: {fileID: 1812433027226884373, guid: 5b0244ed44e7151488d10b332f5f1585,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -229,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8020f9f09904294686b8b3df6a8b37c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEmotion: 0
-  timeUntilNeutral: 2
+  currentEmotion: 1
   timeUntilAngry: 5
-  timeUntilGone: 8
+  timeUntilRage: 10
+  timeUntilGone: 15

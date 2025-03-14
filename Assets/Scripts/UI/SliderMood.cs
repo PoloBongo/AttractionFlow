@@ -11,7 +11,12 @@ public class SliderMood : MonoBehaviour
     [Header("Emoji")] [SerializeField] private List<Sprite> moodTexture;
 
     private const float duration = 0.5f;
+    private float targetValue;
 
+    private void Start()
+    {
+        targetValue = sliderMood.value;
+    }
     public void OnValueChanged()
     {
         CheckStatusMood(sliderMood.value);
@@ -37,7 +42,7 @@ public class SliderMood : MonoBehaviour
         }
     }
 
-    private IEnumerator SmoothSlider(float targetValue)
+    private IEnumerator SmoothSlider()
     {
         float startValue = sliderMood.value;
         float elapsedTime = 0f;
@@ -50,5 +55,12 @@ public class SliderMood : MonoBehaviour
         }
 
         sliderMood.value = targetValue;
+    }
+
+    public void SetTargetValue(float targetValueDelta)
+    {
+        targetValue += targetValueDelta;
+        StopAllCoroutines();
+        StartCoroutine(SmoothSlider());
     }
 }

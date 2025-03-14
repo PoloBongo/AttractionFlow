@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour
     [Header("Input Actions")]
     [SerializeField] private OpenAttraction selectedAttraction;
     private Camera camera;
+    [SerializeField] private float speed = 1f;
     
     private void Awake()
     {
@@ -50,9 +51,8 @@ public class NewBehaviourScript : MonoBehaviour
             }
             else if (touch.inProgress)
             {
-                Debug.Log("Touch in progress");
                 Vector2 delta = touch.delta;
-                camera.transform.position += new Vector3(-delta.x * Time.deltaTime * 3f, 0, -delta.y * Time.deltaTime * 3f);
+                camera.transform.position += new Vector3(delta.y * Time.deltaTime * speed, 0, -delta.x * Time.deltaTime * speed);
                 camera.transform.position = new Vector3(Mathf.Clamp(camera.transform.position.x, -10, 10), camera.transform.position.y, Mathf.Clamp(camera.transform.position.z, -10, 10));
             }
         }

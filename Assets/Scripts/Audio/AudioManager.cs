@@ -9,6 +9,8 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
+        
         if (InstanceAudioManager != null && InstanceAudioManager != this)
         {
             Destroy(this);

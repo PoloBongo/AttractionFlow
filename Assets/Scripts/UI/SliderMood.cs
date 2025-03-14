@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SliderMood : MonoBehaviour
@@ -12,6 +13,10 @@ public class SliderMood : MonoBehaviour
 
     private const float duration = 0.5f;
     private float targetValue;
+
+    [SerializeField] private GameObject win;
+    [SerializeField] private GameObject defeat;
+    [SerializeField] private GameObject canvas;
 
     private void Start()
     {
@@ -39,6 +44,20 @@ public class SliderMood : MonoBehaviour
         else if (slider < 0.3 && slider > 0.0)
         {
             handle.sprite = moodTexture[3];
+        }
+
+        switch (slider)
+        {
+            case <= 0f:
+                canvas.SetActive(true);
+                defeat.SetActive(true);
+                Time.timeScale = 0f;
+                break;
+            case >= 1f:
+                canvas.SetActive(true);
+                win.SetActive(true);
+                Time.timeScale = 0f;
+                break;
         }
     }
 

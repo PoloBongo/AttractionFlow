@@ -28,12 +28,20 @@ public class Queue : ParentQueue
     [SerializeField]
     private bool shouldSpawnCharacter = false;
 
+    [SerializeField]
+    private Pulling pulling;
+
     void Start()
     {
         if (characterPrefabs == null || characterPrefabs.Length == 0)
         {
             Debug.LogError("Aucun prefab de personnage assign�. D�sactivation du spawn.");
             shouldSpawnCharacter = false;
+        }
+
+        if (pulling == null)
+        {
+            Debug.Log("Pulling non assigné");
         }
     }
 
@@ -87,6 +95,11 @@ public class Queue : ParentQueue
             return;
         }
 
+        if (Pull())
+        {
+            return;
+        }
+
         GameObject characterPrefab = characterPrefabs[Random.Range(0, characterPrefabs.Length)];
 
         if (characterPrefab != null)
@@ -124,5 +137,39 @@ public class Queue : ParentQueue
     private bool IsACharacterWaitingOutside()
     {
         return CharacterOutsideQueue > 0;
+    }
+
+    private bool Pull()
+    {
+        if (pulling.IsEmpty())
+        {
+            return false;
+        }
+
+        Character characterScript = pulling.RetrieveCharacter();
+
+        if (characterScript != null)
+        {
+            characterScript.transform.position = spawnPoint.position;
+            spawnedCharacters.Add(characterScript);
+            int waypointID = spawnedCharacters.Count - 1;
+            characterScript.SetWaypoint(Waypoints[waypointID], waypointID);
+        }
+        else
+        {
+            Debug.LogWarning("Le prefab instanci� ne contient pas de script Character !");
+        }
+
+        CharacterMood characterMood = characterScript.GetComponent<CharacterMood>();
+        if (characterMood != null)
+        {
+            characterMood.SetQueue(this);
+        }
+        else
+        {
+            Debug.LogWarning("Le prefab instanci� ne contient pas de script CharacterMood !");
+        }
+
+        return true;
     }
 }

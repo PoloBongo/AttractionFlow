@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  baseSpeed: 5
+  runSpeed: 2
   favouriteAttraction: 0
 --- !u!65 &1053012885722376376
 BoxCollider:
@@ -193,8 +195,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8125806, y: 0.6730318, z: 0.41846037}
-  m_Center: {x: -0.0068175793, y: 0.32753527, z: -0.015469551}
+  m_Size: {x: 0.8125806, y: 0.6763632, z: 0.41846037}
+  m_Center: {x: -0.0068175793, y: 0.32586956, z: -0.015469551}
 --- !u!54 &6573920812288691357
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -238,3 +240,4 @@ MonoBehaviour:
   timeUntilAngry: 5
   timeUntilRage: 10
   timeUntilGone: 15
+  slider: {fileID: 0}

@@ -29,6 +29,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     private FavouriteAttraction favouriteAttraction = FavouriteAttraction.NEUTRAL;
 
+    public bool alreadyJump = false;
 
     void Start()
     {

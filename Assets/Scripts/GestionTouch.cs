@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GestionTouch : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [Header("Input Actions")]

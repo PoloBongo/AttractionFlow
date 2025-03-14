@@ -15,6 +15,7 @@ public class SliderMood : MonoBehaviour
     private float targetValue;
 
     [SerializeField] private GameObject win;
+    [SerializeField] private GameObject pause;
     [SerializeField] private GameObject defeat;
     [SerializeField] private GameObject canvas;
 
@@ -51,11 +52,13 @@ public class SliderMood : MonoBehaviour
             case <= 0f:
                 canvas.SetActive(true);
                 defeat.SetActive(true);
+                pause.SetActive(false);
                 Time.timeScale = 0f;
                 break;
             case >= 1f:
                 canvas.SetActive(true);
                 win.SetActive(true);
+                pause.SetActive(false);
                 Time.timeScale = 0f;
                 break;
         }

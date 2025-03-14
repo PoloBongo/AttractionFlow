@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 4138650689134714455}
   - component: {fileID: 476206880930733038}
   - component: {fileID: 6616466897452247773}
+  - component: {fileID: 6715944813715592137}
   m_Layer: 5
   m_Name: AttractionCooldownUI
   m_TagString: Untagged
@@ -228,7 +229,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5196362765797930201}
-  m_LocalRotation: {x: -0.49999976, y: 0.5000002, z: 0.50000024, w: 0.49999985}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -4.86}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 0
@@ -286,7 +287,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &6616466897452247773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +305,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6715944813715592137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5196362765797930201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57e1cb3494fb124fbc14832e8719490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderCooldown: {fileID: 2095280843863417210}
+  sliderImage: {fileID: 2187368822621942786}
 --- !u!1 &6941056000840356449
 GameObject:
   m_ObjectHideFlags: 0

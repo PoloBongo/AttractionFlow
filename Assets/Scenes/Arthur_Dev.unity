@@ -4155,6 +4155,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsX.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsX.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsZ.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: boundsZ.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: velocityLerp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsX.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsX.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsZ.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsZ.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: cameraBoundsSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7372703841546162003, guid: fb236b9b9d036a94485e0ff3d8246f0c,
+        type: 3}
+      propertyPath: velocityDecreaseLerp
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

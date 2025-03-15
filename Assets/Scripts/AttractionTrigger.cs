@@ -59,6 +59,7 @@ public class AttractionTrigger : MonoBehaviour
                 }
 
                 moneyManager.AddMoney((int)attraction * bonus);
+                Leaderboard.InstanceLeaderboard.AddPlayerScore((int)attraction * bonus);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
 
                 if (spawnText != null)

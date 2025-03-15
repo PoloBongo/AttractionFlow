@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class DOTweenText : MonoBehaviour
 {
-    public static DOTweenText InstanceDOTweenText; 
-    
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private TMP_Text tmp_text;
 

@@ -8,14 +8,27 @@ using UnityEngine;
 
 public class Leaderboard : MonoBehaviour
 {
-    [SerializeField] private string _leaderboardPublicKey =
+    public string _leaderboardPublicKey =
         "bba6e67ef98d2422fd1508d3ea56b724d51fee23aa4b797b4d3003a1faf1b9f8";
 
-    [SerializeField] private TMP_Text _playerScoreText;
     [SerializeField] private TMP_InputField[] _entryFields;
-    [SerializeField] private TMP_InputField _playerUsernameInput;
 
-    private int _playerScore;
+    public int _playerScore;
+    
+    public static Leaderboard InstanceLeaderboard; 
+    
+    private void Awake()
+    {
+        if (InstanceLeaderboard != null && InstanceLeaderboard != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            InstanceLeaderboard = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     
     private void Start()
     {
@@ -23,10 +36,9 @@ public class Leaderboard : MonoBehaviour
         Load();
     }
 
-    public void AddPlayerScore()
+    public void AddPlayerScore(int _score)
     {
-        _playerScore++;
-        _playerScoreText.text = "Your score: " + _playerScore;
+        _playerScore+=_score;
     }
 
     public void Load() => LeaderboardCreator.GetLeaderboard(_leaderboardPublicKey, OnLeaderboardLoaded);
@@ -42,16 +54,5 @@ public class Leaderboard : MonoBehaviour
         {
             _entryFields[i].text = $"{i + 1}. {entries[i].Username} : {entries[i].Score}";
         }
-    }
-    
-    public void Submit()
-    {
-        LeaderboardCreator.UploadNewEntry(_leaderboardPublicKey, _playerUsernameInput.text, _playerScore, OnUploadComplete, Debug.Log);
-        LeaderboardCreator.ResetPlayer();
-    }
-
-    private void OnUploadComplete(bool success)
-    {
-        if (success) Load();
     }
 }

@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class CharacterFavourite : MonoBehaviour
 {
     [Header("Property")][SerializeField] private Image handle;
+    [Header("Property")][SerializeField] private Image bubble;
     [Header("Emoji")][SerializeField] private List<Sprite> attractionTexture;
+    [Header("Colour")][SerializeField] private List<Color> colours;
 
     void Update()
     {
@@ -17,6 +19,7 @@ public class CharacterFavourite : MonoBehaviour
         int attractionID = (int)attraction -1;
 
         handle.sprite = attractionTexture[attractionID];
+        bubble.color = colours[attractionID];
     }
 
     public void Reset()

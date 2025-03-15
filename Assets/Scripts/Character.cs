@@ -25,6 +25,8 @@ public class Character : MonoBehaviour
     private int currentWaypointID;
     private bool isMoving = false;
     private Transform leaveWaypoint;
+    [SerializeField]
+    private CharacterFavourite favouriteAttractionUI;
 
     [SerializeField]
     private FavouriteAttraction favouriteAttraction = FavouriteAttraction.NEUTRAL;
@@ -76,9 +78,13 @@ public class Character : MonoBehaviour
 
     public void SetRandomFavouriteAttraction()
     {
-        favouriteAttraction = (FavouriteAttraction)Random.Range(1, 4);
-
-        Debug.Log("New favourite attraction :" + favouriteAttraction);
+        if (favouriteAttractionUI != null)
+        {
+            favouriteAttraction = (FavouriteAttraction)Random.Range(1, 4);
+            favouriteAttractionUI.gameObject.SetActive(true);
+            favouriteAttractionUI.UpdateUI(favouriteAttraction);
+            Debug.Log("New favourite attraction :" + favouriteAttraction);
+        }
     }
 
     public void SetWaypoint(Transform waypoint, int id, bool temp = false)
@@ -109,6 +115,10 @@ public class Character : MonoBehaviour
         speed = baseSpeed;
         GetComponentInChildren<CharacterEmoji>().Reset();
         GetComponent<CharacterMood>().SetEmotion(Emotion.NEUTRAL);
+        if (favouriteAttractionUI != null)
+        {
+            favouriteAttractionUI.Reset();
+        }
     }
 
     public void AddToPulling()

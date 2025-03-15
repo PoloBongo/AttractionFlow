@@ -91,9 +91,7 @@ public class Queue : ParentQueue
             Debug.LogWarning("SpawnPoint non assigné !");
             return;
         }
-
-        if (Pull()) return;
-
+        
         GameObject characterPrefab = characterPrefabs[Random.Range(0, characterPrefabs.Length)];
 
         if (characterPrefab == null)

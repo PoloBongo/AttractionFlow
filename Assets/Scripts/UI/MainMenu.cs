@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject mainMenuPage;
     [SerializeField] private GameObject creditsPage;
     [SerializeField] private GameObject optionsPage;
+    [SerializeField] private GameObject leaderboardPage;
     [SerializeField] private GameObject creditsTexts;
     
     public void LoadSceneByReference()
@@ -26,12 +27,22 @@ public class MainMenu : MonoBehaviour
         creditsPage.SetActive(true);
         mainMenuPage.SetActive(false);
         optionsPage.SetActive(false);
+        leaderboardPage.SetActive(false);
     }
     
     public void LeaveCredits()
     {
         optionsPage.SetActive(true);
         mainMenuPage.SetActive(false);
+        creditsPage.SetActive(false);
+        leaderboardPage.SetActive(false);
+    }
+
+    public void ShowLeaderboard()
+    {
+        leaderboardPage.SetActive(true);
+        mainMenuPage.SetActive(false);
+        optionsPage.SetActive(false);
         creditsPage.SetActive(false);
     }
 }

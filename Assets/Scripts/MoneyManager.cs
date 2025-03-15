@@ -25,6 +25,11 @@ public class MoneyManager : MonoBehaviour
         }
     }
 
+    public void Find(TMP_Text tmp)
+    {
+        moneyText = tmp;
+    }
+
     public void AddMoney(int amount)
     {
         money += amount;

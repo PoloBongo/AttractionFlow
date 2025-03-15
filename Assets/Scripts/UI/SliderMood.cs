@@ -18,6 +18,8 @@ public class SliderMood : MonoBehaviour
     [SerializeField] private GameObject pause;
     [SerializeField] private GameObject defeat;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private ShowScoreEndGame showScoreEndGame;
+    [SerializeField] private ShowScoreEndGame showScoreEndGame2;
 
     private void Start()
     {
@@ -53,12 +55,14 @@ public class SliderMood : MonoBehaviour
                 canvas.SetActive(true);
                 defeat.SetActive(true);
                 pause.SetActive(false);
+                showScoreEndGame.ShowText();
                 Time.timeScale = 0f;
                 break;
             case >= 1f:
                 canvas.SetActive(true);
                 win.SetActive(true);
                 pause.SetActive(false);
+                showScoreEndGame2.ShowText();
                 Time.timeScale = 0f;
                 break;
         }

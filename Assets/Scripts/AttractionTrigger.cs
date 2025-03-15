@@ -25,6 +25,7 @@ public class AttractionTrigger : MonoBehaviour
     [SerializeField] private GameObject spawnVFX;
     [SerializeField] private GameObject spawnText;
     [SerializeField] private DOTweenText dotweenText;
+    [SerializeField] private Leaderboard leaderboard;
 
     private void Awake()
     {
@@ -41,6 +42,14 @@ public class AttractionTrigger : MonoBehaviour
         {
             moneyManager = FindObjectOfType<MoneyManager>();
         }
+        
+        Found();
+    }
+
+    private void Found()
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("fix");
+        leaderboard = obj.GetComponent<Leaderboard>();
     }
     
     private void OnTriggerEnter(Collider other)
@@ -59,7 +68,7 @@ public class AttractionTrigger : MonoBehaviour
                 }
 
                 moneyManager.AddMoney((int)attraction * bonus);
-                Leaderboard.InstanceLeaderboard.AddPlayerScore((int)attraction * bonus);
+                leaderboard.AddPlayerScore((int)attraction * bonus);
                 CharacterMood characterMood = other.GetComponent<CharacterMood>();
 
                 if (spawnText != null)

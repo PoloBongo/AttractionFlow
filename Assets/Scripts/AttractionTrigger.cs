@@ -24,6 +24,7 @@ public class AttractionTrigger : MonoBehaviour
     [SerializeField] private Attraction attraction;
     [SerializeField] private GameObject spawnVFX;
     [SerializeField] private GameObject spawnText;
+    [SerializeField] private DOTweenText dotweenText;
 
     private void Awake()
     {
@@ -62,7 +63,7 @@ public class AttractionTrigger : MonoBehaviour
 
                 if (spawnText != null)
                 {
-                    DOTweenText.InstanceDOTweenText.PlayText((int)attraction * bonus, spawnText);
+                    dotweenText.PlayText((int)attraction * bonus, spawnText);
                 }
                 
                 if (characterMood != null)

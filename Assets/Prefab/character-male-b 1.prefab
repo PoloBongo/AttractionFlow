@@ -507,10 +507,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handle: {fileID: 875545995052886701}
+  bubble: {fileID: 7327203426064965192}
   attractionTexture:
   - {fileID: 21300000, guid: b3b241d5175224046b7684e119daa5ad, type: 3}
   - {fileID: 21300000, guid: d3a44fb04a04c944a9762be10d20650a, type: 3}
   - {fileID: 21300000, guid: ef4dd3ea8f4c7b344921d52d9a1d3912, type: 3}
+  colours:
+  - {r: 0.9843137, g: 0.47843137, b: 0.8392157, a: 1}
+  - {r: 0.9098039, g: 0.9372549, b: 0.3764706, a: 1}
+  - {r: 0.42352942, g: 1, b: 0.9411765, a: 1}
 --- !u!1 &7486199027818833552
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +617,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8239079804017401161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.616503e-10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

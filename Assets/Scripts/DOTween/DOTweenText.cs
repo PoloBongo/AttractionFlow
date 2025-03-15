@@ -22,19 +22,6 @@ public class DOTweenText : MonoBehaviour
     public GameObject textPrefab;
     public Transform canvasTransform;
 
-    private void Awake()
-    {
-        if (InstanceDOTweenText != null && InstanceDOTweenText != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            InstanceDOTweenText = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-
     public void PlayText(int _money, GameObject spawnText)
     {
         GameObject newText = Instantiate(textPrefab, canvasTransform); // Crée un nouveau texte

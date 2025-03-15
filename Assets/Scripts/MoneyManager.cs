@@ -16,15 +16,15 @@ public class MoneyManager : MonoBehaviour
         
         if (InstanceMoneyManager != null && InstanceMoneyManager != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             InstanceMoneyManager = this;
-            DontDestroyOnLoad(InstanceMoneyManager);
+            DontDestroyOnLoad(gameObject);
         }
     }
-    
+
     public void AddMoney(int amount)
     {
         money += amount;

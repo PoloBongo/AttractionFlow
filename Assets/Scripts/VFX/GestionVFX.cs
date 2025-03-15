@@ -8,16 +8,16 @@ public class GestionVFX : MonoBehaviour
     [SerializeField] private List<ParticleSystem> ParticleSystems;
     public static GestionVFX InstanceGestionVFX;
 
-    private void Start()
+    private void Awake()
     {
         if (InstanceGestionVFX != null && InstanceGestionVFX != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             InstanceGestionVFX = this;
-            DontDestroyOnLoad(InstanceGestionVFX);
+            DontDestroyOnLoad(gameObject);
         }
     }
 

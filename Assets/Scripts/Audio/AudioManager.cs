@@ -6,6 +6,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager InstanceAudioManager; 
     [SerializeField] private AudioClip actualClip;
     [SerializeField] private AudioSource audioSource;
+    private float currentVolume = 0.1f;
 
     private void Awake()
     {
@@ -13,12 +14,12 @@ public class AudioManager : MonoBehaviour
         
         if (InstanceAudioManager != null && InstanceAudioManager != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             InstanceAudioManager = this;
-            DontDestroyOnLoad(InstanceAudioManager);
+            DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -31,5 +32,21 @@ public class AudioManager : MonoBehaviour
     {
         actualClip = _clip;
         PlayAudioClip();
+    }
+    
+    public void OnVolumeSliderChangedOverride(float _volume)
+    {
+        currentVolume = _volume;
+        ApplyVolume();
+    }
+
+    private void ApplyVolume()
+    {
+        AudioListener.volume = currentVolume;
+    }
+
+    public float GetCurrentVolume()
+    {
+        return currentVolume;
     }
 }

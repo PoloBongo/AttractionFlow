@@ -26,12 +26,12 @@ public class DOTweenText : MonoBehaviour
     {
         if (InstanceDOTweenText != null && InstanceDOTweenText != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             InstanceDOTweenText = this;
-            DontDestroyOnLoad(InstanceDOTweenText);
+            DontDestroyOnLoad(gameObject);
         }
     }
 

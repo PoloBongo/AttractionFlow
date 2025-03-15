@@ -398,8 +398,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6948229104818844224}
   m_LocalRotation: {x: -0.00000044703478, y: 0.707107, z: 0.70710665, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.31044}
-  m_LocalScale: {x: 0.0006641201, y: 0.0006641201, z: 0.0006641201}
+  m_LocalPosition: {x: 0, y: 0, z: 0.304}
+  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4145913440322300703}
@@ -407,7 +407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.0203, y: 2}
+  m_AnchoredPosition: {x: -1.349, y: 2}
   m_SizeDelta: {x: 1920, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8718103611476431782
@@ -646,7 +646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6650944, b: 0.8808841, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  baseSpeed: 5
+  baseSpeed: 4
   runSpeed: 2
   favouriteAttractionUI: {fileID: 3566071246660552099}
   favouriteAttraction: 0

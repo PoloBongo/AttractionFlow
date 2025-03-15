@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum Attraction
+public enum Attraction
 {
     Attraction1 = 1,
     Attraction2 = 2,

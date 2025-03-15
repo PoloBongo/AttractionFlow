@@ -49,7 +49,7 @@ public class Buttons : MonoBehaviour
 
     public void EndGameRestart()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(1);
     }
 
     public void EndGameMenu()

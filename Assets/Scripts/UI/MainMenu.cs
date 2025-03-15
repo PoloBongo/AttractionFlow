@@ -5,7 +5,6 @@ using DG.Tweening;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private string playScene;
     [SerializeField] private GameObject mainMenuPage;
     [SerializeField] private GameObject creditsPage;
     [SerializeField] private GameObject optionsPage;
@@ -13,7 +12,7 @@ public class MainMenu : MonoBehaviour
     
     public void LoadSceneByReference()
     {
-        SceneManager.LoadScene(playScene);
+        SceneManager.LoadSceneAsync(1);
     }
     
     public void QuitGame()
@@ -24,35 +23,15 @@ public class MainMenu : MonoBehaviour
     
     public void ShowCredits()
     {
-        DG.Tweening.DOTween.KillAll();
-        
-        mainMenuPage.SetActive(false);
         creditsPage.SetActive(true);
+        mainMenuPage.SetActive(false);
         optionsPage.SetActive(false);
-        var parentRectTransform = creditsPage.GetComponentInParent<RectTransform>();
-        var rectTransform = creditsTexts.GetComponentInParent<RectTransform>();
-        var moveTween = rectTransform.DOMoveY(parentRectTransform.rect.height / 2f, 3f);
-        var scaleTween = rectTransform.DOScale(1, .4f)
-            .SetLoops(-1, LoopType.Yoyo);
-        
-        moveTween.OnComplete(() => scaleTween.Kill());
     }
     
     public void LeaveCredits()
     {
-        DG.Tweening.DOTween.KillAll();
-        
-        var parentRectTransform = creditsPage.GetComponentInParent<RectTransform>();
-        var rectTransform = creditsTexts.GetComponentInParent<RectTransform>();
-        var moveTween = rectTransform.DOMoveY(parentRectTransform.rect.height + 500f, 1f);
-        var scaleTween = rectTransform.DOScale(1, .4f)
-            .SetLoops(-1, LoopType.Yoyo);
-        
-        moveTween.OnComplete(() => {
-            optionsPage.SetActive(true);
-            mainMenuPage.SetActive(false);
-            creditsPage.SetActive(false);
-            scaleTween.Kill();
-        });
+        optionsPage.SetActive(true);
+        mainMenuPage.SetActive(false);
+        creditsPage.SetActive(false);
     }
 }

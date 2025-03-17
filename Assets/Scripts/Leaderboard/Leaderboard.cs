@@ -38,6 +38,7 @@ public class Leaderboard : MonoBehaviour
     
     private void OnLeaderboardLoaded(Entry[] entries)
     {
+        if (!list) return;
         foreach (var entryField in _entryFields)
         {
             entryField.text = "";

@@ -44,9 +44,11 @@ public class Leaderboard : MonoBehaviour
             entryField.text = "";
         }
 
-        for (int i = 0; i < entries.Length; i++)
+        int maxEntriesToProcess = Mathf.Min(entries.Length, _entryFields.Length);
+        for (int i = 0; i < maxEntriesToProcess; i++)
         {
-            _entryFields[i].text = $"{i + 1}. {entries[i].Username} : {entries[i].Score}";
+            if (entries[i].Username != null) 
+                _entryFields[i].text = $"{i + 1}. {entries[i].Username} : {entries[i].Score}";
         }
     }
 }

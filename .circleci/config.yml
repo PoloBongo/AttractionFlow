@@ -4,7 +4,6 @@ executors:
   unity-executor:
     docker:
       - image: unityci/editor:ubuntu-2022.3.32f1-android-3
-      - image: docker:dind
     resource_class: large
 
 jobs:
@@ -20,13 +19,14 @@ jobs:
             export UNITY_SERIAL=${UNITY_SERIAL}
             export UNITY_EMAIL=${UNITY_EMAIL}
             export UNITY_PASSWORD=${UNITY_PASSWORD}
-            docker run --rm \
-              -e UNITY_EMAIL=$UNITY_EMAIL \
-              -e UNITY_PASSWORD=$UNITY_PASSWORD \
-              -e UNITY_SERIAL=$UNITY_SERIAL \
-              -v $(pwd):/project \
-              unityci/editor:windows-2022.3.32f1-android-3.1.0 \
-              --targetPlatform Android
+            unity-editor \
+              -batchmode \
+              -nographics \
+              -silent-crashes \
+              -logFile /dev/stdout \
+              -projectPath $(pwd) \
+              -buildTarget Android \
+              -quit
 
       # Upload artifact
       - run:

@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
 
-      # Build Project
+      # Build Projet
       - run:
           name: Build project
           command: |

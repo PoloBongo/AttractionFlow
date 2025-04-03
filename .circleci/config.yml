@@ -14,6 +14,15 @@ jobs:
       # Checkout le code depuis le repository
       - checkout
 
+      # Installer Docker
+      - run:
+          name: Install Docker
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y docker.io
+            sudo systemctl start docker
+            sudo systemctl enable docker
+
       # Build Project avec Unity Builder Docker image
       - run:
           name: Build project

@@ -4,7 +4,7 @@ version: 2.1
 executors:
   unity-executor:
     docker:
-      - image: game-ci/unity-builder:latest  # Utilise le tag 'latest' pour garantir que l'image existe
+     - image: unityci/editor:2022.3.3f1   # Utilise le tag 'latest' pour garantir que l'image existe
     resource_class: large
 
 jobs:

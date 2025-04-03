@@ -1,43 +1,33 @@
 version: 2.1
 
-# Define the executor to use a Docker container with Unity Builder
 executors:
   unity-executor:
     docker:
-     - image: circleci/python:3.8
+      - image: unityci/editor:windows-2022.3.32f1-android-3.1.0
     resource_class: large
 
 jobs:
   build:
     executor: unity-executor
     steps:
-      # Checkout le code depuis le repository
       - checkout
 
-      # Installer Docker (avec une image préinstallée)
-      - run:
-          name: Install Docker
-          command: |
-            curl -fsSL https://get.docker.com -o get-docker.sh
-            sh get-docker.sh
-
-      # Build Project avec Unity Builder Docker image
+      # Build Project
       - run:
           name: Build project
           command: |
             export UNITY_SERIAL=${UNITY_SERIAL}
             export UNITY_EMAIL=${UNITY_EMAIL}
             export UNITY_PASSWORD=${UNITY_PASSWORD}
-
             docker run --rm \
               -e UNITY_EMAIL=$UNITY_EMAIL \
               -e UNITY_PASSWORD=$UNITY_PASSWORD \
               -e UNITY_SERIAL=$UNITY_SERIAL \
               -v $(pwd):/project \
-              game-ci/unity-builder:latest \
+              unityci/editor:windows-2022.3.32f1-android-3.1.0 \
               --targetPlatform Android
 
-      # Archive Build
+      # Upload artifact
       - run:
           name: Archive Build
           command: |
@@ -86,7 +76,6 @@ jobs:
             curl -X DELETE "$DISCORD_WEBHOOK_URL/messages/$MESSAGE_ID"
             sleep 1
 
-# Workflows to orchestrate the job execution
 workflows:
   version: 2
   build-workflow:

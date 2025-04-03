@@ -4,7 +4,7 @@ version: 2.1
 executors:
   unity-executor:
     docker:
-     - image: unityci/editor:windows-2022.3.32f1-android-3.1.0
+     - image: unityci/editor:ubuntu-2022.3.32f1-android-3
     resource_class: large
 
 jobs:

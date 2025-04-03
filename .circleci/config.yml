@@ -16,9 +16,20 @@ jobs:
       - run:
           name: Build project
           command: |
-            export UNITY_SERIAL=${UNITY_SERIAL}
-            export UNITY_EMAIL=${UNITY_EMAIL}
-            export UNITY_PASSWORD=${UNITY_PASSWORD}
+            # Activer la licence Unity
+            unity-editor \
+              -batchmode \
+              -nographics \
+              -silent-crashes \
+              -logFile /dev/stdout \
+              -username "$UNITY_EMAIL" \
+              -password "$UNITY_PASSWORD" \
+              -serial "$UNITY_SERIAL" \
+              -projectPath $(pwd) \
+              -buildTarget Android \
+              -quit
+            
+            # Lancer la build
             unity-editor \
               -batchmode \
               -nographics \

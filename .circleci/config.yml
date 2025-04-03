@@ -4,7 +4,7 @@ version: 2.1
 executors:
   unity-executor:
     docker:
-     - image: unityci/editor:2022.3.3f1   # Utilise le tag 'latest' pour garantir que l'image existe
+     - image: unityci/editor:windows-2022.3.32f1-android-3.1.0
     resource_class: large
 
 jobs:

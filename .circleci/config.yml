@@ -78,7 +78,7 @@ jobs:
               --header "Authorization: Bearer ${DROPBOX_REFRESH_TOKEN}" \
               --header "Dropbox-API-Arg: {\"path\": \"/Build/Android.apk\", \"mode\": \"overwrite\", \"autorename\": true, \"mute\": false}" \
               --header "Content-Type: application/octet-stream" \
-              --data-binary @build/Android/Android.apk
+              --data-binary @builds/Android/Android.apk
 
       # Envoyer le lien sur Discord
       - run:
@@ -97,15 +97,17 @@ jobs:
           name: Supprimer les anciens messages du webhook
           command: |
             DISCORD_WEBHOOK_URL="${DISCORD_WEBHOOK_URL}"
-
+      
             RESPONSE=$(curl -s "$DISCORD_WEBHOOK_URL/messages?limit=10")
+            echo "Réponse de l'API Discord : $RESPONSE"  # Ajout du débogage
+      
             MESSAGE_ID=$(echo "$RESPONSE" | grep -o '"id":"\([^"]*\)"' | head -n 1 | sed 's/"id":"\([^"]*\)"/\1/')
-
+      
             if [[ -z "$MESSAGE_ID" ]]; then
               echo "❌ Aucun message trouvé ou réponse invalide"
               exit 0
             fi
-
+      
             curl -X DELETE "$DISCORD_WEBHOOK_URL/messages/$MESSAGE_ID"
             sleep 1
 

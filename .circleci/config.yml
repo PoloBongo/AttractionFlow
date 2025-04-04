@@ -19,9 +19,9 @@ jobs:
           force_pull: false
 
       - restore_cache:
-        keys:
-          unity-cache-{{ checksum "Packages/manifest.json" }}
-          unity-cache-v1
+          keys:
+            - unity-cache-{{ checksum "Packages/manifest.json" }}
+            - unity-cache-v1
 
       # Build Project
       - run:
@@ -51,19 +51,21 @@ jobs:
               -executeMethod BuildScript.BuildAndroid \
               -quit
 
-      # Upload artifact
-      - run:
-        - save_cache:
+      # Save cache for Unity dependencies
+      - save_cache:
           paths:
-            /root/.cache/unity3d
-            /root/.local/share/unity3d
-            /project/Library
+            - /root/.cache/unity3d
+            - /root/.local/share/unity3d
+            - /project/Library
           key: unity-cache-{{ checksum "Packages/manifest.json" }}
-      
+
+      # Archive Build
+      - run:
           name: Archive Build
           command: |
             mkdir -p /tmp/build
             cp builds/Android.apk /tmp/build/
+
       - store_artifacts:
           path: /tmp/build
           destination: Build

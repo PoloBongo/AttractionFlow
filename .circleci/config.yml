@@ -12,6 +12,12 @@ jobs:
     steps:
       - checkout
 
+      - setup_remote_docker:
+          docker_layer_caching: true
+          image: unityci/editor:ubuntu-2022.3.32f1-android-3 
+          registry: "docker.io"
+          force_pull: false
+
       # Build Project
       - run:
           name: Build project
@@ -40,12 +46,23 @@ jobs:
               -executeMethod BuildScript.BuildAndroid \
               -quit
 
+      - restore_cache:
+                keys:
+        unity-cache-{{ checksum "Packages/manifest.json" }}
+        unity-cache-v1
+      - save_cache:
+                paths:
+        /root/.cache/unity3d
+        /root/.local/share/unity3d
+        /project/Library
+          key: unity-cache-{{ checksum "Packages/manifest.json" }}
+
       # Upload artifact
       - run:
           name: Archive Build
           command: |
             mkdir -p /tmp/build
-            cp -r build/Android/Android.apk /tmp/build/
+            cp builds/Android.apk /tmp/build/
       - store_artifacts:
           path: /tmp/build
           destination: Build

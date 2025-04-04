@@ -9,7 +9,7 @@ public class BuildScript
 
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
-            scenes = new[] { "Assets/Scenes/Main.unity" }, // Change selon ton projet
+            scenes = new[] { "Assets/Scenes/Main_Menu.unity" }, // Change selon ton projet
             locationPathName = buildPath,
             target = BuildTarget.Android,
             options = BuildOptions.None

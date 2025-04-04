@@ -23,7 +23,7 @@ jobs:
             - unity-cache-{{ checksum "Packages/manifest.json" }}
             - unity-cache-v1
 
-      # Build Project
+      # Build Projet
       - run:
           name: Build project
           command: |

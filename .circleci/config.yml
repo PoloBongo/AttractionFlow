@@ -37,6 +37,7 @@ jobs:
               -logFile /dev/stdout \
               -projectPath $(pwd) \
               -buildTarget Android \
+              -executeMethod BuildScript.BuildAndroid \
               -quit
 
       # Upload artifact

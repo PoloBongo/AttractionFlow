@@ -18,6 +18,11 @@ jobs:
           registry: "docker.io"
           force_pull: false
 
+      - restore_cache:
+        keys:
+          unity-cache-{{ checksum "Packages/manifest.json" }}
+          unity-cache-v1
+
       # Build Project
       - run:
           name: Build project
@@ -46,19 +51,15 @@ jobs:
               -executeMethod BuildScript.BuildAndroid \
               -quit
 
-      - restore_cache:
-                keys:
-                  unity-cache-{{ checksum "Packages/manifest.json" }}
-                  unity-cache-v1
-      - save_cache:
-                paths:
-                  /root/.cache/unity3d
-                  /root/.local/share/unity3d
-                  /project/Library
-          key: unity-cache-{{ checksum "Packages/manifest.json" }}
-
       # Upload artifact
       - run:
+        - save_cache:
+          paths:
+            /root/.cache/unity3d
+            /root/.local/share/unity3d
+            /project/Library
+          key: unity-cache-{{ checksum "Packages/manifest.json" }}
+      
           name: Archive Build
           command: |
             mkdir -p /tmp/build

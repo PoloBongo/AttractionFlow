@@ -93,7 +93,10 @@ public class GestionTouch : MonoBehaviour
             velocity = Vector3.Lerp(velocity, Vector3.zero, velocityDecreaseLerp * Time.deltaTime);
         }
 
-        _camera.transform.position += velocity;
+        if (!float.IsNaN(velocity.x) && !float.IsNaN(velocity.y) && !float.IsNaN(velocity.z))
+        {
+            _camera.transform.position += velocity;
+        }
         ClampCamera();
     }
 
